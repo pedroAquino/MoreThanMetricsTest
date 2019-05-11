@@ -3,6 +3,7 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import SideBarHeader from './components/SideBarHeader';
 import Disclaymer from '../shared/components/Disclaymer';
+import PersonaElement from './components/PersonaElement';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
@@ -14,7 +15,8 @@ const styles = theme => ({
         width: 390,
         bordeRadius: '2px 0 0 0',
         backgroundColor: theme.colors.lightGray,	
-        boxShadow: 'inset 0 1px 20px 0 rgba(0,0,0,0.3), 0 0 30px 0 rgba(0,0,0,0.3)'
+        //boxShadow: 'inset 0 1px 20px 0 rgba(0,0,0,0.3), 0 0 30px 0 rgba(0,0,0,0.3)',
+        paddingBottom: 64
     },
     padded: {
         padding: '22px 68px 0px 24px'
@@ -26,6 +28,11 @@ const styles = theme => ({
     },
     disclaymer: {
         marginTop: 22
+    },
+    elements: {
+      padding: '22px 14px 0px 24px',
+      display: 'flex',
+      justifyContent: 'space-between'
     }
 });
 
@@ -50,9 +57,13 @@ export function SideBar(props: Props) {
                 {"icon of each element to edit it's settings."}
             </p>
             <p>
-               You can reorder the elements by dragging then
+               You can reorder the elements by dragging then.
             </p>
         </Disclaymer>
+      </div>
+      <div className={classes.elements}>
+        <PersonaElement kind="short-text" />
+         <PersonaElement kind="long-text" />
       </div>
     </div>
   );
