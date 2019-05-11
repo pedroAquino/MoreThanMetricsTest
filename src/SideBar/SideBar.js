@@ -63,7 +63,10 @@ export function SideBar(props: Props) {
       </div>
       <div className={classes.elements}>
         <PersonaElement kind="short-text" />
-         <PersonaElement kind="long-text" />
+        <PersonaElement kind="long-text" />
+      </div>
+      <div className={classes.elements}>
+          <PersonaElement kind="image" />
       </div>
     </div>
   );

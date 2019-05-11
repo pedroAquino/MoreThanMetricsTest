@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import injectSheet from "react-jss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
   kind: 'short-text' | 'long-text' | 'image' | 'image-galery' | 'number';
@@ -36,6 +37,11 @@ const styles  = theme => ({
         padding: '11.8px 13.56px 0px 16.31px',
         textAlign: 'center',
         color: '#B1B6B6'
+    },
+    image: {
+        fontSize: 32,
+        padding: '31px 61px 0px 62px',
+        color: '#B1B6B6'
     }
 });
 
@@ -44,11 +50,11 @@ function PersonaElement(props: Props) {
   const content = {
       'short-text': <div className={classes.shortText}>Abc</div>,
       'long-text': <div className={classes.longText}>
-
-
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula, purus sed efficitur dignissim, augue risus suscipit massa, eget accumsan
-                 </div>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula, purus sed efficitur dignissim, augue risus suscipit massa, eget accumsan
+                 </div>,
+       'image':  <div className={classes.image}>
+            <FontAwesomeIcon icon="image" />
+       </div>
   };
 
   return (
