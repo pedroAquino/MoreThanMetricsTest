@@ -4,13 +4,16 @@ import injectSheet from "react-jss";
 import globalStyles from './globalStyles';
 
 type Props = {
-  
+  classes: any
 };
 
 function Viewport(props: Props) {
+  const {
+    classes
+  } = props;
   return (
-    <div>
-      
+    <div className={classes.viewport}>
+      <div style={{ border: '1px solid #fff' }} />
     </div>
   );
 };
