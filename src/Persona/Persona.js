@@ -28,6 +28,10 @@ const styles = theme => ({
         flexBasis: 199,
         flexGrow: 2,
         paddingLeft: 16
+    },
+    text: {
+        marginBlockEnd: '16px !important',
+        marginBlockStart: '16px !important'
     }
 });
 
@@ -47,7 +51,7 @@ function Persona(props: Props) {
             </div>
             <div className={classes.secondColumn}>
                 <Card height={56} label="OCCUPATION">
-                    <p>Researcher</p>
+                    <p className={classes.text}>Researcher</p>
                 </Card>
             </div>
         </div>
