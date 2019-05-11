@@ -9,7 +9,13 @@ const theme = {
     darkGray: '#646E6E',
     lightGray: '#F0F0F0',
     midleGray: '#DCDCDC',
+    white: '#fff',
     lightGradient: 'linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%)'
+  },
+  fontSizes: {
+    large: 20,
+    medium: 16,
+    small: 12
   },
   headerHeight: 64
 };
