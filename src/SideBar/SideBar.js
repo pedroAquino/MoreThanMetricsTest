@@ -3,6 +3,7 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import SideBarHeader from './components/SideBarHeader';
 import Disclaymer from '../shared/components/Disclaymer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
   classes: any;
@@ -42,8 +43,11 @@ export function SideBar(props: Props) {
                 Click or drag & drop one of the element types below to add it to the persona.
             </p>
             <p style={{marginTop:5}}>
-                Click on the cof icon of each element to edit it's settings.
-                You can reorder the elements by dragging then   
+                {'Click on the '}
+                &nbsp;
+                <FontAwesomeIcon icon="cog" />
+                &nbsp;
+                {"icon of each element to edit it's settings. You can reorder the elements by dragging then"}
             </p>
         </Disclaymer>
       </div>
