@@ -8,6 +8,7 @@ const theme = {
   colors: {
     darkGray: '#646E6E',
     lightGray: '#F0F0F0',
+    midleGray: '#DCDCDC',
     lightGradient: 'linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%)'
   },
   headerHeight: 64

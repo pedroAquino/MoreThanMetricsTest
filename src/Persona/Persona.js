@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import injectSheet from "react-jss";
+import PersonaHeader from './components/PersonaHeader';
 
 type Props = {
   classes: any;
@@ -19,6 +20,7 @@ function Persona(props: Props) {
   const { classes } = props;
   return (
      <div className={classes.persona}>
+        <PersonaHeader />
     </div>
   );
 };
