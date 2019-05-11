@@ -1,28 +1,20 @@
 // @flow
-
 import React from 'react';
-import injectSheet, { ThemeProvider } from "react-jss";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ThemeProvider } from "react-jss";
+import Viewport from '../shared/components/Viewport';
 
-const styles = {
-  '@global': {
-    body: {
-      fontFamily: "'Source Sans Pro', sans-serif"
-    }
+const theme = {
+  colors: {
+    darkGray: '#646E6E'
   }
 };
-
-const theme = {};
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-          <h1>TITLE</h1>
-          <FontAwesomeIcon icon="save" />
-      </div>
+      <Viewport />
     </ThemeProvider>
   );
 }
 
-export default injectSheet(styles)(App);
+export default App;
