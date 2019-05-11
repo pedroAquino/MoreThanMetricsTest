@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import logo from './logo.svg';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
@@ -17,12 +16,16 @@ const styles = {
   }
 };
 
+const theme = {};
+
 function App() {
   return (
-    <div className="App">
-        <h1>TITLE</h1>
-        <FontAwesomeIcon icon="stroopwafel" />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+          <h1>TITLE</h1>
+          <FontAwesomeIcon icon="stroopwafel" />
+      </div>
+    </ThemeProvider>
   );
 }
 
