@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import injectSheet from "react-jss";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
   classes: any;
