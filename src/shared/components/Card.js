@@ -61,11 +61,15 @@ function Card(props: Props) {
                         height: height - 15
                     }} 
                     src={src} 
-                    alt="imagem" /> : {children}
+                    alt="imagem" /> : children
             }
         </div>
     </div>
   );
 };
+
+Card.defaultProps = {
+    kind: 'normal'
+}
 
 export default injectSheet(styles)(Card);
