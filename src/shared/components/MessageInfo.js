@@ -8,23 +8,26 @@ type Props = {
 };
 
 const styles = theme => ({
-    disclaymer: {
+    messageInfo: {
 	    backgroundColor: theme.colors.lightGreen,	
         lineHeight: '18px',
         color: theme.colors.darkGray,
         fontSize: 14,
-        padding: '12px 24px 15px 24px',
         fontStyle: 'italic'
+    },
+    container: {
+        padding: '8px 14px 8px 16px',
     }
 });
 
-function Disclaymer(props: Props) {
-  const { children, classes } = props;
+export function MessageInfo(props: Props) {
+  const { classes } = props;
+
   return (
-    <div className={classes.disclaymer}>
-        {children}
+    <div className={classes.messageInfo}>
+      
     </div>
   );
 };
 
-export default injectSheet(styles)(Disclaymer);
+export default injectSheet(styles)(MessageInfo);
