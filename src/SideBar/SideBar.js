@@ -67,6 +67,10 @@ export function SideBar(props: Props) {
       </div>
       <div className={classes.elements}>
           <PersonaElement kind="image" />
+          <PersonaElement kind="image-gallery" />
+      </div>
+      <div className={classes.elements}>
+          <PersonaElement kind="number" />
       </div>
     </div>
   );

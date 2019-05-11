@@ -26,7 +26,7 @@ const globalStyles = theme => ({
     marginTop: theme.headerHeight + 44
   },
   sideBar: {
-    position: 'fixed',
+    position: 'absolute',
     top: theme.headerHeight + 16,
     right: 0
   }

@@ -4,7 +4,7 @@ import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
-  kind: 'short-text' | 'long-text' | 'image' | 'image-galery' | 'number';
+  kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   classes: any;
 };
 
@@ -52,9 +52,9 @@ function PersonaElement(props: Props) {
       'long-text': <div className={classes.longText}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula, purus sed efficitur dignissim, augue risus suscipit massa, eget accumsan
                  </div>,
-       'image':  <div className={classes.image}>
-            <FontAwesomeIcon icon="image" />
-       </div>
+       'image':  <div className={classes.image}><FontAwesomeIcon icon="image" /></div>,
+       'image-gallery': <div className={classes.image}><FontAwesomeIcon icon="images" /></div>,
+       'number': <div className={classes.shortText}>123</div>
   };
 
   return (
