@@ -2,6 +2,7 @@
 import * as React from 'react';
 import injectSheet from "react-jss";
 import globalStyles from './globalStyles';
+import Header from './Header';
 
 type Props = {
   classes: any,
@@ -14,9 +15,12 @@ function Viewport(props: Props) {
     children
   } = props;
   return (
-    <div className={classes.viewport}>
-      {children}
-    </div>
+    <main>
+      <Header />
+      <div className={classes.viewport}>
+        {children}
+      </div>
+    </main>
   );
 };
 
