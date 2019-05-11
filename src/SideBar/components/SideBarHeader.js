@@ -19,7 +19,8 @@ const styles = theme => ({
         fontSize: theme.fontSizes.small,
         fontWeight: 600,
         letterSpacing: 0.8,
-        float: 'left'
+        float: 'left',
+        marginTop: 9
     },
     headerIcon: {
         float: 'right',
