@@ -35,7 +35,7 @@ export function SideBar(props: Props) {
     <div className={classes.sideBar}>
       <SideBarHeader />
       <div className={classes.padded}>
-        <p className={classes.title}>Add Element to Persona</p>
+        <h2 className={classes.title}>Add Element to Persona</h2>
       </div>
       <div className={classes.disclaymer}>
         <Disclaymer>
@@ -47,7 +47,10 @@ export function SideBar(props: Props) {
                 &nbsp;
                 <FontAwesomeIcon icon="cog" />
                 &nbsp;
-                {"icon of each element to edit it's settings. You can reorder the elements by dragging then"}
+                {"icon of each element to edit it's settings."}
+            </p>
+            <p>
+               You can reorder the elements by dragging then
             </p>
         </Disclaymer>
       </div>

@@ -31,7 +31,8 @@ const styles = theme => ({
     },
     text: {
         marginBlockEnd: '16px !important',
-        marginBlockStart: '16px !important'
+        marginBlockStart: '16px !important',
+        fontSize: theme.fontSizes.medium
     }
 });
 
