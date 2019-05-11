@@ -2,6 +2,7 @@
 import * as React from 'react';
 import injectSheet from "react-jss";
 import Header from './Header';
+import SideBar from '../../SideBar/SideBar';
 
 type Props = {
   classes: any,
@@ -15,7 +16,7 @@ const globalStyles = theme => ({
       background: theme.colors.darkGray
     },
     '#header': {
-      position: 'absolute',
+      position: 'fixed',
       top: 0,
       left: 0
     },
@@ -26,6 +27,11 @@ const globalStyles = theme => ({
   viewport: {
     padding: '0px 0px 117px 117px',
     marginTop: theme.headerHeight + 44
+  },
+  sideBar: {
+    position: 'fixed',
+    top: theme.headerHeight + 16,
+    right: 0
   }
 });
 
@@ -39,6 +45,9 @@ function Viewport(props: Props) {
       <Header />
       <div className={classes.viewport}>
         {children}
+      </div>
+      <div className={classes.sideBar}>
+        <SideBar />
       </div>
     </main>
   );
