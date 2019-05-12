@@ -29,7 +29,6 @@ function Header(props: Props) {
     <header id="header" className={classes.mainHeader}>
       <div className={classes.headerContent}>
         <HeaderTitle />
-        {/* <div style={{clear: 'both'}} /> */}
         <div className={classes.headerMenu}>
           <HeaderMenu />
         </div>
