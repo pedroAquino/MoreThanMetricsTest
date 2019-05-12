@@ -4,7 +4,7 @@ import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
-  
+  classes: any;
 };
 
 const styles = theme => ({
