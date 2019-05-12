@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import injectSheet from "react-jss";
-import Header from './Header';
+import Header from '../../Header/Header';
 import SideBar from '../../SideBar/SideBar';
 
 type Props = {
