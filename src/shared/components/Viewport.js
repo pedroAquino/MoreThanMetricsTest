@@ -23,12 +23,9 @@ const globalStyles = theme => ({
   },
   viewport: {
     padding: '0px 0px 117px 117px',
-    marginTop: theme.headerHeight + 44
-  },
-  sideBar: {
-    position: 'absolute',
-    top: theme.headerHeight + 16,
-    right: 0
+    marginTop: theme.headerHeight + 44,
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 });
 
@@ -42,8 +39,6 @@ function Viewport(props: Props) {
       <Header />
       <div className={classes.viewport}>
         {children}
-      </div>
-      <div className={classes.sideBar}>
         <SideBar />
       </div>
     </main>

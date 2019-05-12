@@ -4,6 +4,7 @@ import injectSheet from "react-jss";
 import SideBarHeader from './components/SideBarHeader';
 import Disclaymer from '../shared/components/Disclaymer';
 import PersonaElement from './components/PersonaElement';
+import MessageInfo from '../shared/components/MessageInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
@@ -14,8 +15,7 @@ const styles = theme => ({
     sideBar: {
         width: 390,
         bordeRadius: '2px 0 0 0',
-        backgroundColor: theme.colors.lightGray,	
-        //boxShadow: 'inset 0 1px 20px 0 rgba(0,0,0,0.3), 0 0 30px 0 rgba(0,0,0,0.3)',
+        backgroundColor: theme.colors.lightGray,
         paddingBottom: 64
     },
     padded: {
@@ -33,6 +33,10 @@ const styles = theme => ({
       padding: '22px 14px 0px 24px',
       display: 'flex',
       justifyContent: 'space-between'
+    },
+    messageInfo: {
+       padding: '0px 14px 0px 24px',
+       marginTop: 365
     }
 });
 
@@ -71,6 +75,11 @@ export function SideBar(props: Props) {
       </div>
       <div className={classes.elements}>
           <PersonaElement kind="number" />
+      </div>
+      <div className={classes.messageInfo}>
+        <MessageInfo title="Missing something ?">
+          Contact us to let us know which element types you would like to use in your personas.
+        </MessageInfo>
       </div>
     </div>
   );
