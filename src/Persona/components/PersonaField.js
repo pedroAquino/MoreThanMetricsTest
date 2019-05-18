@@ -2,6 +2,7 @@
 import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import EditionBar from '../../shared/components/EditionBar';
 
 type Props = {
   classes: any;
@@ -10,6 +11,7 @@ type Props = {
   value: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
+  formatedText: ?React.Node
 };
 
 const styles = theme => ({
@@ -48,6 +50,13 @@ const ImgField = ({ height, src }) => (
 );
 const ShortText = ({ classes, value }) => <p className={classes.text}>{value}</p>;
 
+const LongText = ({ classes, formatedText }) => (
+    <React.Fragment>
+        <EditionBar />
+        {formatedText}
+    </React.Fragment>
+)
+
 function PersonaField(props: Props) {
     const { 
       classes, 
@@ -55,19 +64,22 @@ function PersonaField(props: Props) {
       height, 
       kind, 
       src,
-      value
+      value,
+      formatedText
     } = props;
 
     const fieldContent = {
         'short-text': <ShortText classes={classes} value={value} />,
-        'long-text': null,
+        'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': null,
         'number': null
     };
 
+    const fieldHeight = kind === 'long-text' ? 'auto' : height;
+
   return (
-    <div style={{ height: height }} className={classes.field}>
+    <div style={{ height: fieldHeight }} className={classes.field}>
         <div className={classes.fieldHeader}>
             <div className={classes.left}>
                 {label}

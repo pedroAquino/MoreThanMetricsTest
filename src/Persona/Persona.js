@@ -71,6 +71,17 @@ function Persona(props: Props) {
                             value="Maried, 3 kids" 
                         />
                     </li>
+                    <li>
+                        <PersonaField
+                            label="QUOTE"
+                            kind="long-text"
+                            formatedText={
+                                <p>
+                                    “Life may not be the party we hoped for, but while we're here, we should dance.”
+                                </p>
+                            } 
+                        />
+                    </li>
                 </ul>
             </div>
         </div>
