@@ -45,16 +45,24 @@ const styles  = theme => ({
     }
 });
 
+const ShortText = ({ classes }) => <div className={classes.shortText}>Abc</div>;
+const LongText = ({ classes }) => (
+    <div className={classes.longText}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula, purus sed efficitur dignissim, augue risus suscipit massa, eget accumsan
+    </div>
+);
+const Image = ({ classes }) => <div className={classes.image}><FontAwesomeIcon icon="image" /></div>;
+const ImageGallery = ({ classes }) => <div className={classes.image}><FontAwesomeIcon icon="images" /></div>;
+const Number = ({ classes }) => <div className={classes.shortText}>123</div>;
+
 function PersonaElement(props: Props) {
   const { kind, classes } = props;
   const content = {
-      'short-text': <div className={classes.shortText}>Abc</div>,
-      'long-text': <div className={classes.longText}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vehicula, purus sed efficitur dignissim, augue risus suscipit massa, eget accumsan
-                 </div>,
-       'image':  <div className={classes.image}><FontAwesomeIcon icon="image" /></div>,
-       'image-gallery': <div className={classes.image}><FontAwesomeIcon icon="images" /></div>,
-       'number': <div className={classes.shortText}>123</div>
+    'short-text': <ShortText classes={classes} />,
+    'long-text': <LongText classes={classes} />,
+    'image':  <Image classes={classes} />,
+    'image-gallery': <ImageGallery classes={classes} />,
+    'number': <Number classes={classes} />
   };
 
   return (
