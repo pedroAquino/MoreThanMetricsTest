@@ -4,9 +4,14 @@ import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
+import withPersonaState from './services/withPersonaState';
+import { compose } from 'ramda';
+import type { PersonaModel } from './services/personaFactory';
 
 type Props = {
   classes: any;
+  onFieldChange: any;
+  persona: PersonaModel;
 };
 
 const styles = theme => ({
@@ -44,18 +49,19 @@ const styles = theme => ({
 });
 
 function Persona(props: Props) {
-  const { classes } = props;
+  const { classes, onFieldChange, persona } = props;
   return (
      <div className={classes.persona}>
-        <PersonaHeader />
+        <PersonaHeader persona={persona} onFieldChange={onFieldChange} />
         <div className={classes.personaContent}>
             <div className={classes.firstColumn}>
                 <ul>
                     <li>
                         <PersonaField 
-                            height={176} 
+                            height={176}
+                            name="avatar" 
                             kind="image" 
-                            label="IMAGE" 
+                            label="IMAGE"
                             src={Picture}
                         />
                     </li>
@@ -63,13 +69,15 @@ function Persona(props: Props) {
                         <PersonaField
                             kind="number"
                             label="AGE"
-                            value={28} 
+                            value={28}
+                            name="age"
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="GENDER"
-                            value="Not defined" 
+                            value="Not defined"
+                            name="gender" 
                         />
                     </li>
                     <li>
@@ -80,6 +88,7 @@ function Persona(props: Props) {
                                 Picture,
                                 Picture
                             ]}
+                            name="moodImages"
                         />
                     </li>
                 </ul>
@@ -89,19 +98,22 @@ function Persona(props: Props) {
                     <li>
                         <PersonaField
                             label="OCCUPATION"
-                            value="Researcher" 
+                            value="Researcher"
+                            name="occupation" 
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="NATIONALITY"
-                            value="French" 
+                            value="French"
+                            name="nationality"
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="MARITAL STATUS"
-                            value="Maried, 3 kids" 
+                            value="Maried, 3 kids"
+                            name="maritalStatus" 
                         />
                     </li>
                     <li>
@@ -113,6 +125,7 @@ function Persona(props: Props) {
                                     “Life may not be the party we hoped for, but while we're here, we should dance.”
                                 </p>
                             ]}
+                            name="quote"
                         />
                     </li>
                     <li>
@@ -129,7 +142,8 @@ function Persona(props: Props) {
                                 <p style={{fontWeight: 'bold'}}>
                                     Tess is not very interested in technology. She wants things that just work.
                                 </p>
-                            ]} 
+                            ]}
+                            name="description"
                         />
                     </li>
                 </ul>
@@ -139,4 +153,7 @@ function Persona(props: Props) {
   );
 };
 
-export default injectSheet(styles)(Persona);
+export default compose(
+    injectSheet(styles),
+    withPersonaState
+)(Persona);

@@ -15,6 +15,7 @@ type Props = {
   formatedText: Array<HTMLParagraphElement>;
   editable: boolean;
   onChange: any;
+  name: string;
 };
 
 const styles = theme => ({
@@ -104,11 +105,12 @@ const ImgField = ({ height, src }) => (
         alt="imagem"
     />
 );
-const ShortText = ({ classes, value, editable, onChange }) => editable ? 
+const ShortText = ({ classes, value, editable, onChange, name }) => editable ? 
     <input 
         type="text"
         className={`${classes.text} ${classes.textField}`}   
         value={value}
+        name={name}
         onChange={onChange}
     /> : <p className={classes.text}>{value}</p>;
 
@@ -150,15 +152,16 @@ function PersonaField(props: Props) {
       formatedText,
       imageSources,
       editable,
-      onChange
+      onChange,
+      name
     } = props;
 
     const fieldContent = {
-        'short-text': <ShortText classes={classes} onChange={onChange} editable={editable} value={value} />,
+        'short-text': <ShortText classes={classes} name={name} onChange={onChange} editable={editable} value={value} />,
         'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': <ImgGallery classes={classes} imageSources={imageSources} />,
-        'number': <ShortText classes={classes} onChange={onChange} editable={editable} value={value} />,
+        'number': <ShortText classes={classes} name={name} onChange={onChange} editable={editable} value={value} />,
     };
 
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;

@@ -3,9 +3,12 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PersonaField from './PersonaField';
+import type { PersonaModel } from './services/personaFactory';
 
 type Props = {
     classes: any;
+    onFieldChange: any;
+    persona: PersonaModel;
 };
 
 const styles = theme => ({
@@ -38,7 +41,7 @@ const styles = theme => ({
 });
 
 function PersonaHeader(props: Props) {
-  const { classes } = props;
+  const { classes, onFieldChange, persona: { name } } = props;
   return (
     <div className={classes.personaHeader}>
       <div className={classes.avatar}>
@@ -47,7 +50,9 @@ function PersonaHeader(props: Props) {
       <div className={classes.nameField}>
         <PersonaField 
           label="PERSONA NAME"
-          value="Capivara"
+          value={name}
+          name="name"
+          onChange={onFieldChange}
           editable
         />
       </div>
