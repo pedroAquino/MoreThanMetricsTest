@@ -46,8 +46,7 @@ const ImgField = ({ height, src }) => (
         alt="imagem"
     />
 );
-
-const ShortText = ({ classes, text }) => <p className={classes.text}>{text}</p>;
+const ShortText = ({ classes, value }) => <p className={classes.text}>{value}</p>;
 
 function PersonaField(props: Props) {
     const { 
@@ -56,11 +55,11 @@ function PersonaField(props: Props) {
       height, 
       kind, 
       src,
-      text
+      value
     } = props;
 
     const fieldContent = {
-        'short-text': <ShortText classes={classes} text={text} />,
+        'short-text': <ShortText classes={classes} value={value} />,
         'long-text': null,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': null,

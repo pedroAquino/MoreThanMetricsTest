@@ -2,6 +2,7 @@
 import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PersonaField from './PersonaField';
 
 type Props = {
     classes: any;
@@ -9,9 +10,12 @@ type Props = {
 
 const styles = theme => ({
     personaHeader: {
-	    height: 88,	
-        width: '100%',		
-        backgroundColor: theme.colors.midleGray 
+	    height: 88,			
+      backgroundColor: theme.colors.midleGray ,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: '0px 16px 0px 16px'
     },
     avatar: {
       height: 56,	
@@ -24,6 +28,12 @@ const styles = theme => ({
       '& svg': {
         margin: '10px 13px 10px 13px'
       }
+    },
+    nameField: {
+      width: 416
+    },
+    shortNameField: {
+      width: 128
     }
 });
 
@@ -33,6 +43,20 @@ function PersonaHeader(props: Props) {
     <div className={classes.personaHeader}>
       <div className={classes.avatar}>
         <FontAwesomeIcon icon="user" />
+      </div>
+      <div className={classes.nameField}>
+        <PersonaField 
+          text="Capivara"
+          height={56} 
+          label="PERSONA NAME"
+        />
+      </div>
+      <div className={classes.shortNameField}>
+        <PersonaField
+          height={56} 
+          value="CAP"
+          label="SHORT NAME"
+        />
       </div>
     </div>
   );
