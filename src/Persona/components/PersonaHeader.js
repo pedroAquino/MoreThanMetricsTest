@@ -46,14 +46,12 @@ function PersonaHeader(props: Props) {
       </div>
       <div className={classes.nameField}>
         <PersonaField 
-          text="Capivara"
-          height={56} 
           label="PERSONA NAME"
+          value="Capivara"
         />
       </div>
       <div className={classes.shortNameField}>
         <PersonaField
-          height={56} 
           value="CAP"
           label="SHORT NAME"
         />

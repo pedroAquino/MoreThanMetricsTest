@@ -7,7 +7,7 @@ type Props = {
   classes: any;
   label: string;
   height: number;
-  text: string;
+  value: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
 };
@@ -85,7 +85,8 @@ function PersonaField(props: Props) {
 
 PersonaField.defaultProps = {
     kind: 'short-text',
-    text: ''
+    value: '',
+    height: 41
 }
 
 export default injectSheet(styles)(PersonaField);

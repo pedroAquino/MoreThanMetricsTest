@@ -47,7 +47,6 @@ function Persona(props: Props) {
             </div>
             <div className={classes.secondColumn}>
                 <PersonaField
-                    height={56} 
                     label="OCCUPATION"
                     value="Researcher" 
                 />
