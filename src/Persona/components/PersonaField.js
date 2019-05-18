@@ -7,7 +7,7 @@ type Props = {
   classes: any;
   label: string;
   height: number;
-  children: any;
+  text: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
 };
@@ -31,6 +31,11 @@ const styles = theme => ({
     fieldContent: {
         width: '100%',
         marginTop: 8
+    },
+    text: {
+        marginBlockEnd: '16px !important',
+        marginBlockStart: '16px !important',
+        fontSize: theme.fontSizes.medium
     }
 });
 
@@ -42,18 +47,20 @@ const ImgField = ({ height, src }) => (
     />
 );
 
+const ShortText = ({ classes, text }) => <p className={classes.text}>{text}</p>;
+
 function PersonaField(props: Props) {
     const { 
       classes, 
       label, 
-      children, 
       height, 
       kind, 
-      src 
+      src,
+      text
     } = props;
 
     const fieldContent = {
-        'short-text': children,
+        'short-text': <ShortText classes={classes} text={text} />,
         'long-text': null,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': null,
@@ -78,7 +85,8 @@ function PersonaField(props: Props) {
 };
 
 PersonaField.defaultProps = {
-    kind: 'short-text'
+    kind: 'short-text',
+    text: ''
 }
 
 export default injectSheet(styles)(PersonaField);

@@ -28,11 +28,6 @@ const styles = theme => ({
         flexBasis: 199,
         flexGrow: 2,
         paddingLeft: 16
-    },
-    text: {
-        marginBlockEnd: '16px !important',
-        marginBlockStart: '16px !important',
-        fontSize: theme.fontSizes.medium
     }
 });
 
@@ -51,9 +46,11 @@ function Persona(props: Props) {
                 />
             </div>
             <div className={classes.secondColumn}>
-                <PersonaField height={56} label="OCCUPATION">
-                    <p className={classes.text}>Researcher</p>
-                </PersonaField>
+                <PersonaField
+                    text="Researcher"
+                    height={56} 
+                    label="OCCUPATION" 
+                />
             </div>
         </div>
     </div>
