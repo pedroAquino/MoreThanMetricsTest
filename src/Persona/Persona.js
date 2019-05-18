@@ -27,7 +27,13 @@ const styles = theme => ({
     secondColumn: {
         flexBasis: 199,
         flexGrow: 2,
-        paddingLeft: 16
+        paddingLeft: 16,
+        '& ul li': {
+            marginTop: 16
+        },
+        '& ul li:nth-child(1)': {
+            marginTop: 0
+        }
     }
 });
 
@@ -46,10 +52,26 @@ function Persona(props: Props) {
                 />
             </div>
             <div className={classes.secondColumn}>
-                <PersonaField
-                    label="OCCUPATION"
-                    value="Researcher" 
-                />
+                <ul>
+                    <li>
+                        <PersonaField
+                            label="OCCUPATION"
+                            value="Researcher" 
+                        />
+                    </li>
+                    <li>
+                        <PersonaField
+                            label="NATIONALITY"
+                            value="French" 
+                        />
+                    </li>
+                    <li>
+                        <PersonaField
+                            label="MARITAL STATUS"
+                            value="Maried, 3 kids" 
+                        />
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
