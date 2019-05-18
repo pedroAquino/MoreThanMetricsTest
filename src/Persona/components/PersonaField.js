@@ -38,6 +38,13 @@ const styles = theme => ({
         marginBlockEnd: '16px !important',
         marginBlockStart: '16px !important',
         fontSize: theme.fontSizes.medium
+    },
+    formatedText: {
+        marginTop: 16,
+        paddingBottom: 12
+    },
+    editionBar: {
+        marginTop: 28,
     }
 });
 
@@ -52,8 +59,12 @@ const ShortText = ({ classes, value }) => <p className={classes.text}>{value}</p
 
 const LongText = ({ classes, formatedText }) => (
     <React.Fragment>
-        <EditionBar />
-        {formatedText}
+        <div className={classes.editionBar}>
+            <EditionBar />
+        </div>
+        <div className={classes.formatedText}>
+            {formatedText}
+        </div>
     </React.Fragment>
 )
 

@@ -28,10 +28,10 @@ const styles = theme => ({
         flexBasis: 199,
         flexGrow: 2,
         paddingLeft: 16,
-        '& ul li': {
+        '& > ul > li': {
             marginTop: 16
         },
-        '& ul li:nth-child(1)': {
+        '& > ul > li:nth-child(1)': {
             marginTop: 0
         }
     }
