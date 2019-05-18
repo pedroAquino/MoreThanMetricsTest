@@ -22,7 +22,13 @@ const styles = theme => ({
     },
     firstColumn: {
         flexBasis: 199,
-        flexGrow: 1
+        flexGrow: 1,
+        '& > ul > li': {
+            marginTop: 16
+        },
+        '& > ul > li:nth-child(1)': {
+            marginTop: 0
+        }
     },
     secondColumn: {
         flexBasis: 199,
@@ -44,12 +50,29 @@ function Persona(props: Props) {
         <PersonaHeader />
         <div className={classes.personaContent}>
             <div className={classes.firstColumn}>
-                <PersonaField 
-                    height={176} 
-                    kind="image" 
-                    label="IMAGE" 
-                    src={Picture}
-                />
+                <ul>
+                    <li>
+                        <PersonaField 
+                            height={176} 
+                            kind="image" 
+                            label="IMAGE" 
+                            src={Picture}
+                        />
+                    </li>
+                    <li>
+                        <PersonaField
+                            kind="number"
+                            label="AGE"
+                            value={28} 
+                        />
+                    </li>
+                    <li>
+                        <PersonaField
+                            label="GENDER"
+                            value="Not defined" 
+                        />
+                    </li>
+                </ul>
             </div>
             <div className={classes.secondColumn}>
                 <ul>

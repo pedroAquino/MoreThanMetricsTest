@@ -88,7 +88,7 @@ function PersonaField(props: Props) {
         'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': null,
-        'number': null
+        'number': <ShortText classes={classes} value={value} />,
     };
 
     const fieldHeight = kind === 'long-text' ? 'auto' : height;
