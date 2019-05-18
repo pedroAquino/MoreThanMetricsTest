@@ -13,7 +13,13 @@ faShare,
 faCopy,
 faArrowRight,
 faQuestionCircle,
-faEllipsisH
+faEllipsisH,
+faBold,
+faItalic,
+faHeading,
+faList,
+faPaintBrush,
+faLink
 } from '@fortawesome/free-solid-svg-icons';
 
 const configureFontAwesome = () => {
@@ -31,6 +37,12 @@ const configureFontAwesome = () => {
     library.add(faArrowRight);
     library.add(faQuestionCircle);
     library.add(faEllipsisH);
+    library.add(faBold);
+    library.add(faItalic);
+    library.add(faHeading);
+    library.add(faList);
+    library.add(faPaintBrush);
+    library.add(faLink);
 };
 
 export default configureFontAwesome;
