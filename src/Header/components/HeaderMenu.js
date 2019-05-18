@@ -78,7 +78,7 @@ function HeaderMenu(props: Props) {
   ];
   return (
       <ul className={classes.headerMenu}>
-        {menuItens.map(item => <HeaderMenuItem {...item} />)}
+        {menuItens.map(item => <HeaderMenuItem key={item.text} {...item} />)}
       </ul>
   );
 }
