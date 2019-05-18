@@ -5,7 +5,7 @@ export type PersonaModel = {
     shortName: string;
     avatar: string;
     age: number;
-    gender: 'MALE' | 'FEMALE' | 'NON-BINARY';
+    gender: 'MALE' | 'FEMALE' | 'UNDEFINED';
     moodImages: Array<string>;
     occupation: string;
     nationality: string;
@@ -19,14 +19,14 @@ const personaFactory = ({
     shortName = '',
     avatar = '',
     age = 0,
-    gender = '',
+    gender = 'UNDEFINED',
     moodImages = [],
     occupation = '',
     nationality = '',
-    maritalStatus = '',
+    maritalStatus = 'SINGLE',
     quote = '',
     description = '',
-} = {}) => ({
+}: PersonaModel = {}): PersonaModel => ({
     name,
     shortName,
     avatar,

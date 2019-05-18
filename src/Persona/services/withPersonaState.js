@@ -30,7 +30,6 @@ const withPersonaState = (InnerComponent: any) => {
                 ...this.props,
                 persona: personaFactory(this.state)
             };
-            console.log('STATE', this.state);
             return <InnerComponent 
                     onFieldChange={this.onChange} 
                     {...props} 
