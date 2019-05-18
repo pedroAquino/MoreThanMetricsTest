@@ -19,7 +19,8 @@ faItalic,
 faHeading,
 faList,
 faPaintBrush,
-faLink
+faLink,
+faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 const configureFontAwesome = () => {
@@ -43,6 +44,7 @@ const configureFontAwesome = () => {
     library.add(faList);
     library.add(faPaintBrush);
     library.add(faLink);
+    library.add(faPlusCircle);
 };
 
 export default configureFontAwesome;

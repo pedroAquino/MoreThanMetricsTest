@@ -72,6 +72,16 @@ function Persona(props: Props) {
                             value="Not defined" 
                         />
                     </li>
+                    <li>
+                        <PersonaField
+                            kind="image-gallery"
+                            label="MOOD IMAGES"
+                            imageSources={[
+                                Picture,
+                                Picture
+                            ]}
+                        />
+                    </li>
                 </ul>
             </div>
             <div className={classes.secondColumn}>

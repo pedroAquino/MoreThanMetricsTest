@@ -11,6 +11,7 @@ type Props = {
   value: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
+  imageSources: string[];
   formatedText: Array<HTMLParagraphElement>
 };
 
@@ -49,6 +50,36 @@ const styles = theme => ({
     },
     editionBar: {
         marginTop: 28,
+    },
+    imgGallery: {
+        marginTop: 22,
+        '& > ul > li': {
+            marginTop: 8
+        }
+    },
+    addImage: {
+        height: 56,
+        width: '100%',	
+        border: `1px solid ${theme.colors.midleGray}`,	
+        borderRadius: 2	,
+        backgroundColor: theme.colors.lightGray,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: theme.colors.midleGray,
+        position: 'relative'
+    },
+    imageIcon: {
+        fontSize: 40,
+        zIndex: 0
+    },
+    plusIcon: {
+        fontSize: 14,
+        position: 'absolute',
+        top: 32,
+        left: 137,
+        zIndex: 1000,
+        color: theme.colors.darkGray
     }
 });
 
@@ -72,6 +103,22 @@ const LongText = ({ classes, formatedText }) => (
     </React.Fragment>
 )
 
+const ImgGallery = ({ classes, imageSources }) => (
+    <div className={classes.imgGallery}>
+        <div className={classes.addImage}>
+            <div className={classes.imageIcon}>
+                <FontAwesomeIcon icon="image" />
+            </div>
+            <div className={classes.plusIcon}>
+                <FontAwesomeIcon icon="plus-circle" />
+            </div>
+        </div>
+        <ul>
+            { imageSources.map((src, index) => <li key={index}><ImgField height={176} src={src} /></li>) }
+        </ul>
+    </div>
+);
+
 function PersonaField(props: Props) {
     const { 
       classes, 
@@ -80,18 +127,19 @@ function PersonaField(props: Props) {
       kind, 
       src,
       value,
-      formatedText
+      formatedText,
+      imageSources
     } = props;
 
     const fieldContent = {
         'short-text': <ShortText classes={classes} value={value} />,
         'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
-        'image-gallery': null,
+        'image-gallery': <ImgGallery classes={classes} imageSources={imageSources} />,
         'number': <ShortText classes={classes} value={value} />,
     };
 
-    const fieldHeight = kind === 'long-text' ? 'auto' : height;
+    const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
 
   return (
     <div style={{ height: fieldHeight }} className={classes.field}>
