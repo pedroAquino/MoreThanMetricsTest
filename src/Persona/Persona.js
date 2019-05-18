@@ -75,11 +75,28 @@ function Persona(props: Props) {
                         <PersonaField
                             label="QUOTE"
                             kind="long-text"
-                            formatedText={
+                            formatedText={[
                                 <p>
                                     “Life may not be the party we hoped for, but while we're here, we should dance.”
                                 </p>
-                            } 
+                            ]}
+                        />
+                    </li>
+                    <li>
+                        <PersonaField
+                            label="DESCRIPTION"
+                            kind="long-text"
+                            formatedText={[
+                                <p>
+                                    Tess is that friendly neighbor next door. She has a secure job at the national railway company. Together with her husband, she has a monthly household income of  5000 Euro net.
+                                </p>,
+                                <p>
+                                    Tess loves to spend free time with her three kids. Marcus, her husband, loves being outdoors, so whenever possible the couple takes long hiking tours with their children.
+                                </p>,
+                                <p style={{fontWeight: 'bold'}}>
+                                    Tess is not very interested in technology. She wants things that just work.
+                                </p>
+                            ]} 
                         />
                     </li>
                 </ul>

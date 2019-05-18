@@ -11,7 +11,7 @@ type Props = {
   value: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
-  formatedText: ?React.Node
+  formatedText: Array<HTMLParagraphElement>
 };
 
 const styles = theme => ({
@@ -41,7 +41,11 @@ const styles = theme => ({
     },
     formatedText: {
         marginTop: 16,
-        paddingBottom: 12
+        paddingBottom: 12,
+        lineHeight: '22px',
+        '& p': {
+            marginTop: 16
+        }
     },
     editionBar: {
         marginTop: 28,
@@ -63,7 +67,7 @@ const LongText = ({ classes, formatedText }) => (
             <EditionBar />
         </div>
         <div className={classes.formatedText}>
-            {formatedText}
+            {formatedText.map((paragraph, index) => <React.Fragment key={index}>{paragraph}</React.Fragment>)}
         </div>
     </React.Fragment>
 )
