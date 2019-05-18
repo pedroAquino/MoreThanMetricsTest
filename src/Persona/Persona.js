@@ -2,7 +2,7 @@
 import * as React from 'react';
 import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
-import Card from '../shared/components/Card';
+import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
 
 type Props = {
@@ -43,7 +43,7 @@ function Persona(props: Props) {
         <PersonaHeader />
         <div className={classes.personaContent}>
             <div className={classes.firstColumn}>
-                <Card 
+                <PersonaField 
                     height={176} 
                     kind="image" 
                     label="IMAGE" 
@@ -51,9 +51,9 @@ function Persona(props: Props) {
                 />
             </div>
             <div className={classes.secondColumn}>
-                <Card height={56} label="OCCUPATION">
+                <PersonaField height={56} label="OCCUPATION">
                     <p className={classes.text}>Researcher</p>
-                </Card>
+                </PersonaField>
             </div>
         </div>
     </div>

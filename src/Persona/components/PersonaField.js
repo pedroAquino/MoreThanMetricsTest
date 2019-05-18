@@ -8,16 +8,16 @@ type Props = {
   label: string;
   height: number;
   children: any;
-  kind: 'image' | 'normal';
+  kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
 };
 
 const styles = theme => ({
-    card: {
+    field: {
         background: theme.colors.white,
         padding: '7px 6.96px 8px 12px'
     },
-    cardHeader: {
+    fieldHeader: {
         fontSize: theme.fontSizes.small,
 	    color: '#B1B6B6',	
         fontWeight: 'bold',
@@ -28,14 +28,22 @@ const styles = theme => ({
     right: {
         float: 'right'
     },
-    cardContent: {
+    fieldContent: {
         width: '100%',
         marginTop: 8
     }
 });
 
-function Card(props: Props) {
-  const { 
+const ImgField = ({ height, src }) => (
+    <img 
+        style={{ width: '100%',  height: height - 15}} 
+        src={src} 
+        alt="imagem"
+    />
+);
+
+function PersonaField(props: Props) {
+    const { 
       classes, 
       label, 
       children, 
@@ -43,9 +51,18 @@ function Card(props: Props) {
       kind, 
       src 
     } = props;
+
+    const fieldContent = {
+        'short-text': children,
+        'long-text': null,
+        'image': <ImgField height={height} src={src} />,
+        'image-gallery': null,
+        'number': null
+    };
+
   return (
-    <div style={{ height: height }} className={classes.card}>
-        <div className={classes.cardHeader}>
+    <div style={{ height: height }} className={classes.field}>
+        <div className={classes.fieldHeader}>
             <div className={classes.left}>
                 {label}
             </div>
@@ -53,23 +70,15 @@ function Card(props: Props) {
                 <FontAwesomeIcon icon="cog" />
             </div>
         </div>
-        <div className={classes.cardContent}>
-            {
-                kind === 'image' ?
-                    <img style={{
-                        width: '100%',
-                        height: height - 15
-                    }} 
-                    src={src} 
-                    alt="imagem" /> : children
-            }
+        <div className={classes.fieldContent}>
+            {fieldContent[kind]}
         </div>
     </div>
   );
 };
 
-Card.defaultProps = {
-    kind: 'normal'
+PersonaField.defaultProps = {
+    kind: 'short-text'
 }
 
-export default injectSheet(styles)(Card);
+export default injectSheet(styles)(PersonaField);
