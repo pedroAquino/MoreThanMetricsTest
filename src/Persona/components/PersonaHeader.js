@@ -48,6 +48,7 @@ function PersonaHeader(props: Props) {
         <PersonaField 
           label="PERSONA NAME"
           value="Capivara"
+          editable
         />
       </div>
       <div className={classes.shortNameField}>
