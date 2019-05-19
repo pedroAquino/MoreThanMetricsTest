@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './App/App';
+import configureFontAwesome from './shared/config/fontAwesome';
 import * as serviceWorker from './serviceWorker';
+
+// configure icons
+configureFontAwesome();
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
