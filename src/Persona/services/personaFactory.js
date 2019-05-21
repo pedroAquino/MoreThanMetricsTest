@@ -6,7 +6,6 @@ export type PersonaModel = {
     initials: string;
     color: string;
     avatar: string;
-    columns: Array<any>;
 };
 
 const personaFactory = ({
@@ -14,15 +13,13 @@ const personaFactory = ({
     name = '',
     initials = '',
     color = '#fff',
-    avatar = 'default.png',
-    columns = []
+    avatar = 'default.png'
 }: PersonaModel = {}): PersonaModel => ({
     id,
     name,
-    initials,
+    initials: name ? name.substring(0, 3).toUpperCase() : initials,
     color,
-    avatar,
-    columns
+    avatar
 });
 
 export default personaFactory;
