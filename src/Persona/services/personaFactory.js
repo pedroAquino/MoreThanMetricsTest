@@ -1,47 +1,28 @@
 // @flow
 
 export type PersonaModel = {
+    id: number;
     name: string;
-    shortName: string;
+    initials: string;
+    color: string;
     avatar: string;
-    age: number;
-    gender: 'MALE' | 'FEMALE' | 'UNDEFINED';
-    moodImages: Array<string>;
-    occupation: string;
-    nationality: string;
-    maritalStatus: 'MARRIED' | 'SINGLE' | 'DIVORCED';
-    quote: string;
-    description: string;
+    columns: Array<any>;
 };
 
 const personaFactory = ({
+    id  = 0,
     name = '',
-    shortName = '',
-    avatar = '',
-    age = 0,
-    gender = 'UNDEFINED',
-    moodImages = [],
-    occupation = '',
-    nationality = '',
-    maritalStatus = 'SINGLE',
-    quote = '',
-    description = '',
+    initials = '',
+    color = '#fff',
+    avatar = 'default.png',
+    columns = []
 }: PersonaModel = {}): PersonaModel => ({
+    id,
     name,
-    shortName,
+    initials,
+    color,
     avatar,
-    age,
-    gender,
-    moodImages,
-    occupation,
-    nationality,
-    maritalStatus,
-    quote,
-    description,
-    setShortName() {
-        this.shortName = this.name.substring(0, 3);
-        return this;
-    }
+    columns
 });
 
 export default personaFactory;
