@@ -1,9 +1,9 @@
 // @flow
 
-export type EntityState = {
+export type EntityState<T> = {
     entityStatus: 'LOADING' | 'ERROR' | 'STABLE';
     errors: any;
-    entity: any;
+    entity: T;
 };
 
 const entityStateFactory = ({
@@ -16,7 +16,7 @@ const entityStateFactory = ({
     entity
 });
 
-export const withEntityState = (entity: any, entityState: EntityState = entityStateFactory()) => ({
+export const withEntityState = (entityState: EntityState = entityStateFactory(), entity: any) => ({
     ...entityState,
     entity: entity
 });

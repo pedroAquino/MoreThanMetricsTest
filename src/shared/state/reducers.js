@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
+import personaReducer from '../../Persona/services/personaDucks';
 
 // All Business Entities Goes Here
 const entities = combineReducers({
-    //todos: TodoReducer
+    persona: personaReducer
 });
 
 //All ui stuff goes here
