@@ -1,10 +1,11 @@
-import { 
+import personaReducer, { 
     GET_PERSONA, 
     GET_PERSONA_COMPLETE,
     GET_PERSONA_ERROR,
     getPersona,
     getPersonaComplete,
-    getPersonaError
+    getPersonaError,
+    initialState
 } from './personaDucks';
 
 describe('persona related actions',  () => {
@@ -34,4 +35,52 @@ describe('persona related actions',  () => {
             payload: error
         })
     });
+});
+
+describe('Persona reducer', () => {
+    it('should return initial state', () => {
+        expect(
+            personaReducer(undefined, {})
+        ).toEqual(initialState);
+    });
+    
+    it('should set persona to loading state', () => {
+        expect(
+            personaReducer(initialState, getPersona(20))
+        ).toEqual({
+            ...initialState,
+            entityStatus: 'LOADING'
+        });
+    });
+
+    it('should set persona to error state and add errors', () => {
+        const errors = {
+            name: 'Name is required'
+        };
+        expect(
+            personaReducer(initialState, getPersonaError(errors))
+        ).toEqual({
+            ...initialState,
+            entityStatus: 'ERROR',
+            errors: errors
+        });
+    });
+
+    it('should load persona', () => {
+        const persona = {
+            "id":20,
+            "name":"Klaus",
+            "initials":"KLA",
+            "color":"#F46060",
+            "avatar":"klaus"
+        };
+        expect(
+            personaReducer(initialState, getPersonaComplete(persona))
+        ).toEqual({
+            ...persona,
+            entityStatus: 'STABLE',
+            errors: {}
+        });
+    });
+
 });
