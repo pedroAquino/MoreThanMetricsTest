@@ -20,3 +20,12 @@ it('should create a field according to object', () => {
         nextId: 2
     });
 });
+
+
+it('should return default field type when not specified', () => {
+    const field = fieldFactory({
+        field_type: 'SOME FIELD TYPE'
+    });
+
+    expect(field.fieldType).toBe('short-text');
+});
