@@ -4,10 +4,11 @@ import type { PersonaModel } from './personaFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import personaFactory from './personaFactory';
 import { compose } from 'ramda';
+
 type PersonaState = PersonaModel & EntityState;
 
 export const GET_PERSONA = 'GET_PERSONA';
-export const GET_PERSONA_COMPLETE = 'GET_PERSONA_SUCCESS';
+export const GET_PERSONA_COMPLETE = 'GET_PERSONA_COMPLETE';
 export const GET_PERSONA_ERROR = 'GET_PERSONA_ERROR';
 
 export const getPersona = (id: number) => ({
@@ -36,12 +37,13 @@ export default function personaReducer(state: PersonaState = initialState , acti
             return Object.assign({}, state, { entityStatus: 'LOADING' });
         case GET_PERSONA_ERROR:
             return Object.assign({}, state, { entityStatus: 'ERROR', errors: action.payload });
-        case GET_PERSONA_COMPLETE:
+        case GET_PERSONA_COMPLETE: {
             const persona = compose(
                 withEntityState,
                 personaFactory
             )(action.payload);
             return Object.assign({}, persona, { entityStatus: 'STABLE' });
+        }
         default:
             return state;
     }
