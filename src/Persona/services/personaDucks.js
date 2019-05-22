@@ -3,7 +3,8 @@ import type { EntityState } from '../../shared/state/entityStateFactory';
 import type { PersonaModel } from './personaFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import personaFactory from './personaFactory';
-import { compose, tap } from 'ramda';
+import { compose } from 'ramda';
+type PersonaState = PersonaModel & EntityState;
 
 export const GET_PERSONA = 'GET_PERSONA';
 export const GET_PERSONA_COMPLETE = 'GET_PERSONA_SUCCESS';
@@ -24,13 +25,12 @@ export const getPersonaError = (error: any) => ({
     payload: {...error}
 });
 
-const initialState: EntityState<PersonaModel> = compose(
-    tap(console.log),
+const initialState: PersonaState = compose(
     withEntityState,
     personaFactory,
 )({});
 
-export default function personaReducer(state: EntityState<PersonaModel> = initialState , action: any) {
+export default function personaReducer(state: PersonaState = initialState , action: any) {
     switch (action.type) {
         default:
             return state;

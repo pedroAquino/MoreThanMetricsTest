@@ -8,7 +8,7 @@ describe('entity state tests', () => {
         };
         const enhancedJohn = withEntityState(entitty);
         expect(enhancedJohn).toEqual({
-            entity: {...entitty},
+            ...entitty,
             entityStatus: 'LOADING',
             errors: {}
         });

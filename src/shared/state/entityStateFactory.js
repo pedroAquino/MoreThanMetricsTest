@@ -1,24 +1,20 @@
 // @flow
 
-export type EntityState<T> = {
+export type EntityState = {
     entityStatus: 'LOADING' | 'ERROR' | 'STABLE';
     errors: any;
-    entity: T;
 };
 
 const entityStateFactory = ({
     entityStatus = 'LOADING',
-    errors = {},
-    entity = null
+    errors = {}
 }: EntityState = {}) => ({
     entityStatus,
     errors: entityStatus === 'ERROR' ? errors : {},
-    entity
 });
 
-export const withEntityState = (entityState: EntityState = entityStateFactory(), entity: any) => ({
-    ...entityState,
-    entity: entity
+export const withEntityState = (entity: any) => Object.assign({}, entity, {
+    ...entityStateFactory()
 });
 
 export default entityStateFactory;
