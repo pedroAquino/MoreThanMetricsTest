@@ -1,9 +1,8 @@
 // @flow
 
-type Column = {
+export type Column = {
     id: number;
-    width: 'thin' | 'wide',
-    getFlexGrow: function;
+    width: 'thin' | 'wide'
 };
 
 const columnFactory = ({
