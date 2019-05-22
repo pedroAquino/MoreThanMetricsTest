@@ -4,8 +4,11 @@ import type { Column } from './columnFactory';
 import columnFactory from './columnFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose } from 'ramda';
+import listHelper from '../../shared/utils/listHelper';
 
-type ColumnState = EntityState & Column;
+type ColumnState = EntityState & {
+    columns: Array<Column>
+};
 
 export const GET_COLUMNS = 'GET_COLUMNS';
 export const GET_COLUMNS_ERROR = 'GET_COLUMNS_ERROR';
@@ -25,3 +28,17 @@ export const getColumnsComplete = (column: Column) => ({
     type: GET_COLUMNS_COMPLETE,
     payload: {...column}
 });
+
+
+const initialState: ColumnState = compose(
+    listHelper.add,
+    withEntityState,
+    columnFactory
+)({});
+
+export default function columnsReducer(state: ColumnState = initialState, action: any) {
+    switch (action.payload) {
+        default:
+            return state;
+    }
+};
