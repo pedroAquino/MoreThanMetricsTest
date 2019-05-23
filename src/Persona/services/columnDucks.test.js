@@ -24,13 +24,15 @@ describe('column related actions', () => {
    });
 
    it('should create a columns complete action', () => {
-       const column = {
-        "id": 1,
-        "width": "thin"
-       };
-       expect(getColumnsComplete(column)).toEqual({
+       const columns = [
+            {
+                "id": 1,
+                "width": "thin"
+            }
+       ];
+       expect(getColumnsComplete(columns)).toEqual({
            type: 'GET_COLUMNS_COMPLETE',
-           payload: {...column}
+           payload: [...columns]
        });
    }); 
 });

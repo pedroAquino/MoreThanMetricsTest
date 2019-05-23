@@ -4,7 +4,7 @@ import type { Column } from './columnFactory';
 import columnFactory from './columnFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose } from 'ramda';
-import stateHelper from '../../shared/utils/stateHelper';
+import { setToLoadingState, setToErrorState } from '../../shared/utils/stateHelper';
 
 type ColumnState = EntityState & {
     columns: Array<Column>
@@ -24,13 +24,12 @@ export const getColumnsError = (errors: any) => ({
     payload: errors
 });
 
-export const getColumnsComplete = (column: Column) => ({
+export const getColumnsComplete = (columns: Array<Column>) => ({
     type: GET_COLUMNS_COMPLETE,
-    payload: {...column}
+    payload: [...columns]
 });
 
-
-const withiItems = column => Object.assign({}, column, { items: [columnFactory()] })
+const withiItems = column => ({ ...column, items: [columnFactory()] });
 
 const initialState: ColumnState = compose(
     withiItems,
@@ -40,7 +39,11 @@ const initialState: ColumnState = compose(
 export default function columnsReducer(state: ColumnState = initialState, action: any) {
     switch (action.payload) {
         case GET_COLUMNS:
-            return 
+            return setToLoadingState(state);
+        case GET_COLUMNS_ERROR:
+            return setToErrorState(state);
+        case GET_COLUMNS_COMPLETE:
+            return Object.assign({}, state, { items: [...action.payload] })
         default:
             return state;
     }

@@ -1,10 +1,4 @@
-import { curry } from 'ramda';
+//import { curry } from 'ramda';
 
-export default {
-    toArray:  curry((...items) => [...items]),
-    
-    addRootLevel: curry(
-        (key, values) => ({ [key]: {...values} })
-    ),
-
-};
+export const setToLoadingState = state => Object.assign({}, state, { entityStatus: 'LOADING' });
+export const setToErrorState = (state, errors) => Object.assign({}, state, { entityStatus: 'ERROR', errors });
