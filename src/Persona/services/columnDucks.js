@@ -4,7 +4,7 @@ import type { Column } from './columnFactory';
 import columnFactory from './columnFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose } from 'ramda';
-import listHelper from '../../shared/utils/listHelper';
+import stateHelper from '../../shared/utils/stateHelper';
 
 type ColumnState = EntityState & {
     columns: Array<Column>
@@ -30,14 +30,17 @@ export const getColumnsComplete = (column: Column) => ({
 });
 
 
+const withiItems = column => Object.assign({}, column, { items: [columnFactory()] })
+
 const initialState: ColumnState = compose(
-    listHelper.add,
-    withEntityState,
-    columnFactory
+    withiItems,
+    withEntityState
 )({});
 
 export default function columnsReducer(state: ColumnState = initialState, action: any) {
     switch (action.payload) {
+        case GET_COLUMNS:
+            return 
         default:
             return state;
     }
