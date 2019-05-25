@@ -4,10 +4,10 @@ const server = () => {
             status: 200, 
             data: {
                 "id":20,
-                "name":"Klaus",
-                "initials":"KLA",
+                "name":"Tess",
+                "initials":"TES",
                 "color":"#F46060",
-                "avatar":"klaus",
+                "avatar":"tess",
             } 
         },
 
@@ -32,7 +32,7 @@ const server = () => {
                     "id":1,
                     "title":"Image",
                     "field_type":"image",
-                    "data":"persona.png",
+                    "data":"tess.jpg",
                     "column_id":1,
                     "prev_id":null,
                     "next_id":2
@@ -60,8 +60,8 @@ const server = () => {
                     "title":"Mood Images",
                     "field_type":"image_gallery",
                     "data":[
-                        "dog.png",
-                        "guitar.png"
+                        "dog.jpg",
+                        "beach.jpeg"
                     ],
                     "column_id":1,
                     "prev_id":3,
