@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import type { PersonaState } from '../services/personaDucks';
 import { updatePersona, getPersona } from '../services/personaDucks';
 
-const DEFAULT_PERSONA_ID = 20;
+export const DEFAULT_PERSONA_ID = 20;
 
 type Props = {
     dispatchGet: (id: number) => void;

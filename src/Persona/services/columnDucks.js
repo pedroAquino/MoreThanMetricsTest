@@ -6,7 +6,7 @@ import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose } from 'ramda';
 import { setToLoadingState, setToErrorState } from '../../shared/utils/stateHelper';
 
-type ColumnState = EntityState & {
+export type ColumnState = EntityState & {
     columns: Array<Column>
 };
 
