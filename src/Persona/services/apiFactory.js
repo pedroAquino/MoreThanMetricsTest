@@ -129,7 +129,7 @@ const mockedHttpCall = (url = '', method = 'GET', body = {}) => {
     console.log(`Doing ${method} request to endpoint ${url} returned the response: ${JSON.stringify(response)}`);
     
     return new Promise(
-        resolve => setTimeout(() => resolve(response) , 3000)
+        resolve => setTimeout(() => resolve(response) , 1000)
     );
 }
 

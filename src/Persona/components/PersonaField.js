@@ -16,6 +16,7 @@ type Props = {
   formatedText: Array<HTMLParagraphElement>;
   editable: boolean;
   name: string;
+  disabled: boolean;
   onBlur: (evt: any) => void;
 };
 
@@ -96,6 +97,9 @@ const styles = theme => ({
         left: 137,
         zIndex: 1000,
         color: theme.colors.darkGray
+    },
+    disabled: {
+        opacity: '0.4'
     }
 });
 
@@ -159,7 +163,8 @@ function PersonaField(props: Props) {
       imageSources,
       editable,
       name,
-      onBlur
+      onBlur,
+      disabled
     } = props;
 
     const fieldContent = {
@@ -172,8 +177,10 @@ function PersonaField(props: Props) {
 
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
 
+    const disabledStyles = disabled ? classes.disabled : null;
+
   return (
-    <div style={{ height: fieldHeight }} className={classes.field}>
+    <div style={{ height: fieldHeight }} className={`${classes.field} ${disabledStyles}`}>
         <div className={classes.fieldHeader}>
             <div className={classes.left}>
                 {label}

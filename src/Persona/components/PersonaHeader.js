@@ -43,7 +43,7 @@ const styles = theme => ({
 function PersonaHeader(props: Props) {
   const { 
     classes, 
-    persona: { name, initials },
+    persona: { name, initials, entityStatus },
     onUpdatePersona
   } = props;
   return (
@@ -58,6 +58,7 @@ function PersonaHeader(props: Props) {
           onBlur={onUpdatePersona}
           name="name"
           editable
+          disabled={entityStatus === 'LOADING'}
         />
       </div>
       <div className={classes.shortNameField}>
@@ -67,6 +68,7 @@ function PersonaHeader(props: Props) {
           initialValue={initials}
           onBlur={onUpdatePersona}
           editable
+          disabled={entityStatus === 'LOADING'}
         />
       </div>
     </div>
