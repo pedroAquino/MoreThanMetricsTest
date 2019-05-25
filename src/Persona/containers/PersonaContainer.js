@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import type { PersonaState } from '../services/personaDucks';
 import { updatePersona, getPersona } from '../services/personaDucks';
-import personaFactory from '../services/personaFactory';
 
 const DEFAULT_PERSONA_ID = 20;
 
@@ -28,7 +27,6 @@ class PersonaContainer extends React.Component<Props, any>{
     /*:: onUpdatePersona: () => void */
     onUpdatePersona(persona: any) {
         const parsed = Object.assign({}, this.props.persona, persona);
-        console.log('PARSED', parsed);
         this.props.dispatchUpdate(parsed);
     }
 
