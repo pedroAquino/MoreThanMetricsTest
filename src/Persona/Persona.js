@@ -4,6 +4,7 @@ import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
+import PersonaContainer from './containers/PersonaContainer';
 
 type Props = {
   classes: any;
@@ -47,10 +48,14 @@ function Persona(props: Props) {
   const { classes  } = props;
   return (
      <div className={classes.persona}>
-        <PersonaHeader persona={{
-            name: 'John',
-            initials: 'JOH'
-        }} />
+        <PersonaContainer>
+            { (persona, onUpdatePersona) => {
+                return <PersonaHeader 
+                        persona={persona}  
+                        onUpdatePersona={onUpdatePersona}
+                    /> 
+            }}
+        </PersonaContainer>
         <div className={classes.personaContent}>
             <div className={classes.firstColumn}>
                 <ul>

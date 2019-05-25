@@ -3,12 +3,12 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PersonaField from './PersonaField';
-import type { PersonaModel } from '../services/personaFactory';
+import type { PersonaState } from '../services/personaDucks';
 
 type Props = {
     classes: any;
-    onFieldChange: any;
-    persona: PersonaModel;
+    onUpdatePersona: (persona: PersonaState) => void;
+    persona: PersonaState;
 };
 
 const styles = theme => ({
