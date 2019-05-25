@@ -134,13 +134,11 @@ const mockedHttpCall = (url = '', method = 'GET', body = {}) => {
     );
 }
 
-const apiFactory = () => {
-    return {
-        getPersona: (id) => mockedHttpCall(`/personas/${id}`),
-        updatePersona: (persona) => mockedHttpCall(`/personas/${persona.id}`, 'PUT', persona),
-        getColumns: (personaId) => mockedHttpCall(`/personas/${personaId}/columns`),
-        getFields: (personaId) => mockedHttpCall(`/personas/${personaId}/columns/fields`)
-    };
-};
+const apiFactory = () => ({
+    getPersona: id => mockedHttpCall(`/personas/${id}`),
+    updatePersona: persona => mockedHttpCall(`/personas/${persona.id}`, 'PUT', persona),
+    getColumns: personaId => mockedHttpCall(`/personas/${personaId}/columns`),
+    getFields: personaId => mockedHttpCall(`/personas/${personaId}/columns/fields`)
+});
 
 export default apiFactory;
