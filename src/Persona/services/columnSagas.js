@@ -9,7 +9,6 @@ import { createColumnsWithFields } from './columnFactory';
 
 function* getColumns(action) {
     try {
-        debugger;
         const columnsResponse = yield call(
             apiFactory().getColumns,
             action.payload

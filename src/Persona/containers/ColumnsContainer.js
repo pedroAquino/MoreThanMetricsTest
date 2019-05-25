@@ -30,7 +30,7 @@ class ColumnsContainer extends React.Component<Props, State>{
 };
 
 const mapStateToProps = state => ({
-    columns: state.columns
+    columns: state.entities.columns
 });
 
 const mapDispatchToProps = dispatch => ({

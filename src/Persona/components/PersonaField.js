@@ -13,7 +13,7 @@ type Props = {
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
   imageSources: string[];
-  formatedText: Array<HTMLParagraphElement>;
+  formatedText: Array<string>;
   editable: boolean;
   name: string;
   disabled: boolean;
@@ -130,7 +130,7 @@ const LongText = ({ classes, formatedText }) => (
             <EditionBar />
         </div>
         <div className={classes.formatedText}>
-            {formatedText.map((paragraph, index) => <React.Fragment key={index}>{paragraph}</React.Fragment>)}
+            {formatedText.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
         </div>
     </React.Fragment>
 )

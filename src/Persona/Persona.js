@@ -5,6 +5,7 @@ import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
 import PersonaContainer from './containers/PersonaContainer';
+import ColumnsContainer from './containers/ColumnsContainer';
 
 type Props = {
   classes: any;
@@ -44,6 +45,24 @@ const styles = theme => ({
     }
 });
 
+const formatedText = fieldType => {
+    if (fieldType === 'quote') {
+        return [
+                "“Life may not be the party we hoped for, but while we're here, we should dance.”"
+        ];
+    }
+
+    if (fieldType === 'description') {
+        return [
+            'Tess is that friendly neighbor next door. She has a secure job at the national railway company. Together with her husband, she has a monthly household income of  5000 Euro net.',
+            'Tess loves to spend free time with her three kids. Marcus, her husband, loves being outdoors, so whenever possible the couple takes long hiking tours with their children.', 
+            'Tess is not very interested in technology. She wants things that just work.'
+        ];
+    }
+
+    return [];
+}
+
 function Persona(props: Props) {
   const { classes  } = props;
   return (
@@ -57,7 +76,40 @@ function Persona(props: Props) {
             }}
         </PersonaContainer>
         <div className={classes.personaContent}>
-            <div className={classes.firstColumn}>
+            <ColumnsContainer>
+                { (columnsState) => {
+                    return columnsState.items.map((column, index) => {
+                        const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
+                        
+                        return <div className={colClass}>
+                            <ul>
+                                { column.fields.map(field => {
+                                   return (
+                                    <li>
+                                        <PersonaField 
+                                            height={field.fieldType === 'image' ? 176 : null}
+                                            name={field.title} 
+                                            kind={field.fieldType}
+                                            label={field.title.toUpperCase()}
+                                            src={field.fieldType === 'image' ? Picture : null}
+                                            imageSources={field.fieldType === 'image-gallery' ? [
+                                                Picture,
+                                                Picture
+                                            ] : []}
+                                            initialValue={field.data}
+                                            formatedText={formatedText(field.fieldType)}
+                                        />
+                                    </li>
+                                   ) 
+                                })}
+                            </ul>
+                        </div>
+                    })
+                }}
+            </ColumnsContainer>
+            
+            
+            {/* <div className={classes.firstColumn}>
                 <ul>
                     <li>
                         <PersonaField 
@@ -150,7 +202,7 @@ function Persona(props: Props) {
                         />
                     </li>
                 </ul>
-            </div>
+            </div> */}
         </div>
     </div>
   );
