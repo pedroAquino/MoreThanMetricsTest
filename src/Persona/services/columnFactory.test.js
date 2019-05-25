@@ -5,5 +5,6 @@ it('should create an empty column', () => {
     expect(column).toEqual({
         id: 0,
         width: 'thin',
+        fields: []
     });
 });
