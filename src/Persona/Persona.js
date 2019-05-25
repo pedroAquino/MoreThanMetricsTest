@@ -4,8 +4,6 @@ import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
-import { compose } from 'ramda';
-import type { PersonaModel } from './services/personaFactory';
 
 type Props = {
   classes: any;

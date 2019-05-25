@@ -5,7 +5,7 @@ import { withEntityState } from '../../shared/state/entityStateFactory';
 import personaFactory from './personaFactory';
 import { compose } from 'ramda';
 
-type PersonaState = PersonaModel & EntityState;
+export type PersonaState = PersonaModel & EntityState;
 
 // ---- FETCH PERSONA ------
 export const GET_PERSONA = 'GET_PERSONA';
