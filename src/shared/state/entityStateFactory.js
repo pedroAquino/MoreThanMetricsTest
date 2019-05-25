@@ -1,7 +1,7 @@
 // @flow
 
 export type EntityState = {
-    entityStatus: 'LOADING' | 'ERROR' | 'STABLE';
+    entityStatus: 'LOADING' | 'ERROR' | 'STABLE' | 'PERSISTING' | 'PERSISTING_ERRORS';
     errors: any;
 };
 
