@@ -23,7 +23,6 @@ const fieldFactory = ({
 }: any = {}): Field => ({
     id,
     title,
-    fieldType,
     data,
     columnId: columnId || column_id,
     prevId: prevId || prev_id,
