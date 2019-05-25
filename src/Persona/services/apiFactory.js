@@ -98,7 +98,9 @@ const server = () => {
                     "id":8,
                     "title":"Quote",
                     "field_type":"long_text",
-                    "data":"“Life may not be the party we hoped for, but while we're here, we should dance.”",
+                    "data": [
+                        "“Life may not be the party we hoped for, but while we're here, we should dance.”"
+                    ],
                     "column_id":2,
                     "prev_id":7,
                     "next_id":9
@@ -107,7 +109,11 @@ const server = () => {
                     "id":9,
                     "title":"Description",
                     "field_type":"long_text",
-                    "data":"Tess is that friendly neighbor next door. She has a secure job at the national railway company. Together with her husband, she has a monthly household income of 5000 Euro net. Tess loves to spend free time with her three kids. Marcus, her husband, loves being outdoors, so whenever possible the couple takes long hiking tours with their children. Tess is not very interested in technology. She wants things that just work.",
+                    "data": [
+                        'Tess is that friendly neighbor next door. She has a secure job at the national railway company. Together with her husband, she has a monthly household income of  5000 Euro net.',
+                        'Tess loves to spend free time with her three kids. Marcus, her husband, loves being outdoors, so whenever possible the couple takes long hiking tours with their children.', 
+                        'Tess is not very interested in technology. She wants things that just work.'
+                    ],
                     "column_id":2,
                     "prev_id":8,
                     "next_id":null

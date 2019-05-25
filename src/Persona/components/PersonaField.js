@@ -177,7 +177,7 @@ function PersonaField(props: Props) {
 
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
 
-    const disabledStyles = disabled ? classes.disabled : null;
+    const disabledStyles = disabled ? classes.disabled : '';
 
   return (
     <div style={{ height: fieldHeight }} className={`${classes.field} ${disabledStyles}`}>

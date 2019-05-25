@@ -21,7 +21,7 @@ export class FieldContainer extends React.Component<Props, State>{
         this.onFieldBlur = this.onFieldBlur.bind(this);
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props) {
         if (prevProps.initialValue !==
             this.props.initialValue) {
             this.setState({

@@ -18,9 +18,9 @@ const columnFactory = ({
     fields
 });
 
-export const createColumnsWithFields = (columns = [], fields = []) => {
+export const createColumnsWithFields = (columns: Array<any> = [], fields: Array<any> = []): Array<Column> => {
     const mappedFields = fields.map(fieldFactory);
-    const mapper =  c => Object.assign({}, c, { fields: mappedFields.filter(field => field.columnId === c.id) })
+    const mapper =  (c: any) => Object.assign({}, c, { fields: mappedFields.filter(field => field.columnId === c.id) })
     return columns.map(mapper)
 };
 
