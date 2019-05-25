@@ -30,20 +30,20 @@ export const getColumnsComplete = (columns: Array<Column>) => ({
 });
 
 const withiItems = column => ({ ...column, items: [columnFactory()] });
-
-const initialState: ColumnState = compose(
+ 
+export const initialState: ColumnState = compose(
     withiItems,
     withEntityState
 )({});
 
 export default function columnsReducer(state: ColumnState = initialState, action: any) {
-    switch (action.payload) {
+    switch (action.type) {
         case GET_COLUMNS:
             return setToLoadingState(state);
         case GET_COLUMNS_ERROR:
-            return setToErrorState(state);
+            return setToErrorState(state, action.payload);
         case GET_COLUMNS_COMPLETE:
-            return Object.assign({}, state, { items: [...action.payload] })
+            return Object.assign({}, state, { entityStatus: 'STABLE', items: [...action.payload] })
         default:
             return state;
     }

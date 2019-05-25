@@ -1,7 +1,8 @@
-import {
+import columnsReducer, {
     getColumns,
     getColumnsError,
-    getColumnsComplete
+    getColumnsComplete,
+    initialState
 } from './columnDucks';
 
 describe('column related actions', () => {
@@ -37,4 +38,50 @@ describe('column related actions', () => {
    }); 
 });
 
-//describe('columns reducer',  () => {});
+describe('columns reducer',  () => {
+    it('should return initialState', () => {
+        expect(columnsReducer(undefined, {})).toEqual(initialState);
+    });
+
+    it('should set columns to loading state', () => {
+        const action = getColumns(20);
+        expect(columnsReducer(initialState, action)).toEqual({
+            ...initialState,
+            entityStatus: 'LOADING'
+        });
+    });
+
+    it('should set columns to error state', () => {
+        const action = getColumnsError({ status: 500 });
+        expect(columnsReducer({ 
+            ...initialState, 
+            entityStatus: 'LOADING' 
+        }, action)).toEqual({
+            ...initialState,
+            entityStatus: 'ERROR',
+            errors: { status: 500 }
+        });
+    });
+
+    it('should set columns to stable state with loaded columns', () => {
+        const action = getColumnsComplete([
+            {
+                id: 1,
+                width: 'thin',
+                fields: []
+            },
+            {
+                id: 2,
+                width: 'wide',
+                fields: []
+            }
+        ]);
+
+        const result = columnsReducer(initialState, action);
+        expect(result).toEqual({
+            ...initialState,
+            entityStatus: 'STABLE',
+            items: [...action.payload]
+        });
+    });
+});
