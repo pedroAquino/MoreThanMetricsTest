@@ -126,8 +126,7 @@ const mockedHttpCall = (url = '', method = 'GET', body = {}) => {
     const { getResponse, getDynamicResponse } = server();
     const response = method === 'GET' ? getResponse(url) : getDynamicResponse(body);
     
-    console.log(`Doing ${method} request to endpoint ${url} returned the response:`);
-    console.table ? console.table(response) : console.log(JSON.stringify(response));
+    console.log(`Doing ${method} request to endpoint ${url} returned the response: ${JSON.stringify(response)}`);
     
     return new Promise(
         resolve => setTimeout(() => resolve(response) , 3000)
