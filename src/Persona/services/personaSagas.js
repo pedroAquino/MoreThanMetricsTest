@@ -3,7 +3,10 @@ import apiFactory from './apiFactory';
 import {
     GET_PERSONA,
     getPersonaComplete,
-    getPersonaError
+    getPersonaError,
+    UPDATE_PERSONA,
+    updatePersonaComplete,
+    updatePersonaError
 } from './personaDucks';
 
 function* fetchPersona(action) {
@@ -18,6 +21,19 @@ function* fetchPersona(action) {
     }
 }
 
+function* updatePersona(action) {
+  try {
+      const response = yield call(
+        apiFactory().updatePersona,
+        action.payload
+      );
+      yield put(updatePersonaComplete(response.data))
+  } catch(e) {
+      yield put(updatePersonaError(e));
+  }
+} 
+
 export default [
-    takeLatest(GET_PERSONA, fetchPersona)
+    takeLatest(GET_PERSONA, fetchPersona),
+    takeLatest(UPDATE_PERSONA,  updatePersona)
 ];

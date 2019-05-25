@@ -58,7 +58,7 @@ function PersonaHeader(props: Props) {
           onBlur={onUpdatePersona}
           name="name"
           editable
-          disabled={entityStatus === 'LOADING'}
+          disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>
       <div className={classes.shortNameField}>
@@ -68,7 +68,7 @@ function PersonaHeader(props: Props) {
           initialValue={initials}
           onBlur={onUpdatePersona}
           editable
-          disabled={entityStatus === 'LOADING'}
+          disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>
     </div>
