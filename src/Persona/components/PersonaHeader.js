@@ -7,7 +7,7 @@ import type { PersonaState } from '../services/personaDucks';
 
 type Props = {
     classes: any;
-    onUpdatePersona: (persona: PersonaState) => void;
+    onUpdatePersona: (persona: any) => void;
     persona: PersonaState;
 };
 
@@ -41,7 +41,11 @@ const styles = theme => ({
 });
 
 function PersonaHeader(props: Props) {
-  const { classes, persona: { name, initials } } = props;
+  const { 
+    classes, 
+    persona: { name, initials },
+    onUpdatePersona
+  } = props;
   return (
     <div className={classes.personaHeader}>
       <div className={classes.avatar}>
@@ -51,6 +55,7 @@ function PersonaHeader(props: Props) {
         <PersonaField 
           label="PERSONA NAME"
           initialValue={name}
+          onBlur={onUpdatePersona}
           name="name"
           editable
         />
@@ -60,6 +65,7 @@ function PersonaHeader(props: Props) {
           label="SHORT NAME"
           name="initials"
           initialValue={initials}
+          onBlur={onUpdatePersona}
           editable
         />
       </div>

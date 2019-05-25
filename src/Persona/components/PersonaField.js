@@ -16,6 +16,7 @@ type Props = {
   formatedText: Array<HTMLParagraphElement>;
   editable: boolean;
   name: string;
+  onBlur: (evt: any) => void;
 };
 
 const styles = theme => ({
@@ -105,15 +106,16 @@ const ImgField = ({ height, src }) => (
         alt="imagem"
     />
 );
-const ShortText = ({ classes, initialValue, editable, name }) => editable ? 
-    <FieldContainer initialValue={initialValue}>
-        { (value, onChange) => {
+const ShortText = ({ classes, initialValue, editable, name, onBlur }) => editable ? 
+    <FieldContainer onBlur={onBlur}  initialValue={initialValue}>
+        { (value, onChange, onFieldBlur) => {
             return <input 
                     type="text"
                     className={`${classes.text} ${classes.textField}`}   
                     value={value}
                     name={name}
                     onChange={onChange}
+                    onBlur={onFieldBlur}
                 />
         }}
     </FieldContainer> : <p className={classes.text}>{initialValue}</p>;
@@ -156,15 +158,16 @@ function PersonaField(props: Props) {
       formatedText,
       imageSources,
       editable,
-      name
+      name,
+      onBlur
     } = props;
 
     const fieldContent = {
-        'short-text': <ShortText classes={classes} name={name} editable={editable} initialValue={initialValue} />,
+        'short-text': <ShortText classes={classes} name={name} onBlur={onBlur} editable={editable} initialValue={initialValue} />,
         'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': <ImgGallery classes={classes} imageSources={imageSources} />,
-        'number': <ShortText classes={classes} name={name} editable={editable} initialValue={initialValue} />,
+        'number': <ShortText classes={classes} name={name} onBlur={onBlur} editable={editable} initialValue={initialValue} />,
     };
 
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;

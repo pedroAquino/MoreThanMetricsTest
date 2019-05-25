@@ -3,6 +3,7 @@ import * as React from 'react';
 
 type Props = {
  initialValue: string;
+ onBlur: (value: any) => void;
  children: any;
 };
 
@@ -17,6 +18,7 @@ export class FieldContainer extends React.Component<Props, State>{
             value: props.initialValue
         };
         this.onChange = this.onChange.bind(this);
+        this.onFieldBlur = this.onFieldBlur.bind(this);
     }
 
     /*:: onChange: () => void */
@@ -25,11 +27,20 @@ export class FieldContainer extends React.Component<Props, State>{
             value: evt.target.value
         });
     }
+
+    /*:: onFieldBlur: () => void */
+    onFieldBlur(evt: any) {
+        const fieldValue = {
+            [evt.target.name]: evt.target.value
+        };
+        this.props.onBlur(fieldValue);
+    }
   
     render() {
         return this.props.children(
             this.state.value,
-            this.onChange
+            this.onChange,
+            this.onFieldBlur
         );
     }
 };

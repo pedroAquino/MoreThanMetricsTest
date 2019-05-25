@@ -4,13 +4,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import type { PersonaState } from '../services/personaDucks';
 import { updatePersona, getPersona } from '../services/personaDucks';
+import personaFactory from '../services/personaFactory';
 
 const DEFAULT_PERSONA_ID = 20;
 
-type Props = PersonaState & {
+type Props = {
     dispatchGet: (id: number) => void;
     dispatchUpdate: (persona: PersonaState) => void;
     children: any;
+    persona: PersonaState;
 }
 
 class PersonaContainer extends React.Component<Props, any>{
@@ -24,20 +26,22 @@ class PersonaContainer extends React.Component<Props, any>{
     }
 
     /*:: onUpdatePersona: () => void */
-    onUpdatePersona(persona: PersonaState) {
-        this.props.dispatchUpdate(persona);
+    onUpdatePersona(persona: any) {
+        const parsed = Object.assign({}, this.props.persona, persona);
+        console.log('PARSED', parsed);
+        this.props.dispatchUpdate(parsed);
     }
 
     render() {
         return this.props.children(
-            this.props, 
+            this.props.persona, 
             this.onUpdatePersona
         );
     }
 };
 
 const mapStateToProps = state => ({
-    ...state.entities.persona
+    persona: state.entities.persona
 });
 
 const mapDispatchToProps = dispatch => ({
