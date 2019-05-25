@@ -41,7 +41,7 @@ const styles = theme => ({
 });
 
 function PersonaHeader(props: Props) {
-  const { classes, onFieldChange, persona: { name, initials } } = props;
+  const { classes, persona: { name, initials } } = props;
   return (
     <div className={classes.personaHeader}>
       <div className={classes.avatar}>
@@ -50,9 +50,8 @@ function PersonaHeader(props: Props) {
       <div className={classes.nameField}>
         <PersonaField 
           label="PERSONA NAME"
-          value={name}
+          initialValue={name}
           name="name"
-          onChange={onFieldChange}
           editable
         />
       </div>
@@ -60,8 +59,7 @@ function PersonaHeader(props: Props) {
         <PersonaField
           label="SHORT NAME"
           name="initials"
-          onChange={onFieldChange}
-          value={initials}
+          initialValue={initials}
           editable
         />
       </div>

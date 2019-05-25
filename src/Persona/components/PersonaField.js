@@ -3,18 +3,18 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import EditionBar from '../../shared/components/EditionBar';
+import FieldContainer from '../containers/FieldContainer';
 
 type Props = {
   classes: any;
   label: string;
   height: number;
-  value: string;
+  initialValue: string;
   kind: 'short-text' | 'long-text' | 'image' | 'image-gallery' | 'number';
   src: ?string;
   imageSources: string[];
   formatedText: Array<HTMLParagraphElement>;
   editable: boolean;
-  onChange: any;
   name: string;
 };
 
@@ -105,14 +105,18 @@ const ImgField = ({ height, src }) => (
         alt="imagem"
     />
 );
-const ShortText = ({ classes, value, editable, onChange, name }) => editable ? 
-    <input 
-        type="text"
-        className={`${classes.text} ${classes.textField}`}   
-        value={value}
-        name={name}
-        onChange={onChange}
-    /> : <p className={classes.text}>{value}</p>;
+const ShortText = ({ classes, initialValue, editable, name }) => editable ? 
+    <FieldContainer initialValue={initialValue}>
+        { (value, onChange) => {
+            return <input 
+                    type="text"
+                    className={`${classes.text} ${classes.textField}`}   
+                    value={value}
+                    name={name}
+                    onChange={onChange}
+                />
+        }}
+    </FieldContainer> : <p className={classes.text}>{initialValue}</p>;
 
 const LongText = ({ classes, formatedText }) => (
     <React.Fragment>
@@ -148,20 +152,19 @@ function PersonaField(props: Props) {
       height, 
       kind, 
       src,
-      value,
+      initialValue,
       formatedText,
       imageSources,
       editable,
-      onChange,
       name
     } = props;
 
     const fieldContent = {
-        'short-text': <ShortText classes={classes} name={name} onChange={onChange} editable={editable} value={value} />,
+        'short-text': <ShortText classes={classes} name={name} editable={editable} initialValue={initialValue} />,
         'long-text': <LongText classes={classes} formatedText={formatedText} />,
         'image': <ImgField height={height} src={src} />,
         'image-gallery': <ImgGallery classes={classes} imageSources={imageSources} />,
-        'number': <ShortText classes={classes} name={name} onChange={onChange} editable={editable} value={value} />,
+        'number': <ShortText classes={classes} name={name} editable={editable} initialValue={initialValue} />,
     };
 
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
@@ -185,7 +188,7 @@ function PersonaField(props: Props) {
 
 PersonaField.defaultProps = {
     kind: 'short-text',
-    value: '',
+    initialValue: '',
     height: 41,
     editable: false
 }

@@ -4,14 +4,11 @@ import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
 import Picture from '../shared/assets/capivara.jpg';
-import withPersonaState from './services/withPersonaState';
 import { compose } from 'ramda';
 import type { PersonaModel } from './services/personaFactory';
 
 type Props = {
   classes: any;
-  onFieldChange: any;
-  persona: PersonaModel;
 };
 
 const styles = theme => ({
@@ -49,10 +46,13 @@ const styles = theme => ({
 });
 
 function Persona(props: Props) {
-  const { classes, onFieldChange, persona } = props;
+  const { classes  } = props;
   return (
      <div className={classes.persona}>
-        <PersonaHeader persona={persona} onFieldChange={onFieldChange} />
+        <PersonaHeader persona={{
+            name: 'John',
+            initials: 'JOH'
+        }} />
         <div className={classes.personaContent}>
             <div className={classes.firstColumn}>
                 <ul>
@@ -69,14 +69,14 @@ function Persona(props: Props) {
                         <PersonaField
                             kind="number"
                             label="AGE"
-                            value={28}
+                            initialValue={28}
                             name="age"
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="GENDER"
-                            value="Not defined"
+                            initialValue="Not defined"
                             name="gender" 
                         />
                     </li>
@@ -98,21 +98,21 @@ function Persona(props: Props) {
                     <li>
                         <PersonaField
                             label="OCCUPATION"
-                            value="Researcher"
+                            initialValue="Researcher"
                             name="occupation" 
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="NATIONALITY"
-                            value="French"
+                            initialValue="French"
                             name="nationality"
                         />
                     </li>
                     <li>
                         <PersonaField
                             label="MARITAL STATUS"
-                            value="Maried, 3 kids"
+                            initialValue="Maried, 3 kids"
                             name="maritalStatus" 
                         />
                     </li>
@@ -153,7 +153,4 @@ function Persona(props: Props) {
   );
 };
 
-export default compose(
-    injectSheet(styles),
-    withPersonaState
-)(Persona);
+export default injectSheet(styles)(Persona);
