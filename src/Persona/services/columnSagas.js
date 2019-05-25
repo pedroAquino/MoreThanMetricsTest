@@ -5,10 +5,11 @@ import {
     getColumnsError,
     getColumnsComplete
 } from './columnDucks';
-import createColumnsWithFields from './columnFactory';
+import { createColumnsWithFields } from './columnFactory';
 
 function* getColumns(action) {
     try {
+        debugger;
         const columnsResponse = yield call(
             apiFactory().getColumns,
             action.payload
