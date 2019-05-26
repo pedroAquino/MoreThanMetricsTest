@@ -9,6 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Redux for state management,
 - Flow for static type checking
 - JSS for CSS in JS stylesheets
+- JEST for unit tests
 
 ## Features
 - [x] Layout and Ui according to invision specs 
@@ -25,6 +26,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  - [x] Text field data should be saved on blur. 
  - []  Any change in field position should be saved
 
+## Automated Tests
+Please note that I built tests for all the business and state management functions. You can run then with `npm test`
 
 ## Available Scripts
 
