@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
     classes: any;
+    title: string;
 };
 
 const styles = theme => ({
@@ -37,15 +38,15 @@ const styles = theme => ({
 });
 
 function HeaderTitle(props: Props) {
-  const { classes } = props;
+  const { classes, title } = props;
   return (
     <div className={classes.titleContainer}>
         <div className={classes.userIcon}>
-        <FontAwesomeIcon icon="user" />
+          <FontAwesomeIcon icon="user" />
         </div>
-        <h1>Persona <span>Capivara</span></h1>
+        <h1>Persona <span>{title}</span></h1>
         <div className={classes.editIcon}>
-        <FontAwesomeIcon icon="edit" />
+          <FontAwesomeIcon icon="edit" />
         </div>
     </div>
   );
