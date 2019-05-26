@@ -18,6 +18,7 @@ type Props = {
   name: string;
   disabled: boolean;
   hasErrors: boolean;
+  isNew: boolean;
   onBlur: (evt: any) => void;
 };
 
@@ -171,7 +172,8 @@ function PersonaField(props: Props) {
       name,
       onBlur,
       disabled,
-      hasErrors
+      hasErrors,
+      isNew
     } = props;
 
     const fieldContent = {
@@ -184,6 +186,7 @@ function PersonaField(props: Props) {
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
     const disabledStyles = disabled ? classes.disabled : '';
     const fieldError = hasErrors ? classes.fieldError : '';
+    const icon = isNew ? 'trash' : 'cog';
 
   return (
     <div style={{ height: fieldHeight }} className={`${fieldError || classes.field} ${disabledStyles}`}>
@@ -192,7 +195,7 @@ function PersonaField(props: Props) {
                 {label}
             </div>
             <div className={classes.right}>
-                <FontAwesomeIcon icon="cog" />
+                <FontAwesomeIcon icon={icon} />
             </div>
         </div>
         <div className={classes.fieldContent}>

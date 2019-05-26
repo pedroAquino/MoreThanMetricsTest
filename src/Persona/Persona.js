@@ -94,6 +94,7 @@ function Persona(props: Props) {
                                             formatedText={field.formatedText}
                                             editable={field.editable}
                                             disabled={columnsState.entityStatus === 'PERSISTING'}
+                                            isNew={field.isNew}
                                         />
                                     </li>
                                    ) 

@@ -43,7 +43,8 @@ export const addFieldToColumn = curry((columnState: ColumnState, field: Field): 
         columnId: column.id,
         prevId: column.fields[column.fields.length - 1].id,
         nextId: null,
-        editable: true
+        editable: true,
+        isNew: true
     });
 
     const columnWithField = Object.assign({}, column, {

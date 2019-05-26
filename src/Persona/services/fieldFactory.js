@@ -10,6 +10,7 @@ export type Field = {
     imageSources: Array<string>;
     formatedText: Array<string>;
     editable: boolean;
+    isNew: boolean;
 };
 
 const fieldFactory = ({
@@ -22,6 +23,7 @@ const fieldFactory = ({
     formatedText = [],
     columnId =  0,
     editable = false,
+    isNew = false,
     prevId =  0,
     nextId =  0,
     prev_id = 0,

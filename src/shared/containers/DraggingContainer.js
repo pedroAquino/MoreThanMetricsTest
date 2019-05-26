@@ -14,6 +14,7 @@ type Props = {
   children: any;
   dispatchStart: (field: Field) => void;
   dispatchStop: (field: Field, position: Position) => void;
+  dispatchAddField: (field: Field) => void;
 };
 
 type State = {
@@ -28,9 +29,12 @@ class DraggingContainer extends React.Component<Props, State>{
     this.field = fieldFactory({
       title: 'info',
       fieldType: 'short-text',
-      columnId: 2
+      columnId: 2,
+      isNew: true
     });
   }
+
+  field: Field;
   
   /*:: onStart: () => void */
   onStart() {
