@@ -3,6 +3,7 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
+import FieldPlaceHolder from './components/FieldPlaceHolder';
 import PersonaContainer from './containers/PersonaContainer';
 import ColumnsContainer from './containers/ColumnsContainer';
 
