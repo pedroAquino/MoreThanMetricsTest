@@ -3,12 +3,12 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PersonaField from './PersonaField';
-import type { PersonaModel } from '../services/personaFactory';
+import type { PersonaState } from '../services/personaDucks';
 
 type Props = {
     classes: any;
-    onFieldChange: any;
-    persona: PersonaModel;
+    onUpdatePersona: (persona: any) => void;
+    persona: PersonaState;
 };
 
 const styles = theme => ({
@@ -41,7 +41,11 @@ const styles = theme => ({
 });
 
 function PersonaHeader(props: Props) {
-  const { classes, onFieldChange, persona: { name, shortName } } = props;
+  const { 
+    classes, 
+    persona: { name, initials, entityStatus },
+    onUpdatePersona
+  } = props;
   return (
     <div className={classes.personaHeader}>
       <div className={classes.avatar}>
@@ -50,19 +54,21 @@ function PersonaHeader(props: Props) {
       <div className={classes.nameField}>
         <PersonaField 
           label="PERSONA NAME"
-          value={name}
+          initialValue={name}
+          onBlur={onUpdatePersona}
           name="name"
-          onChange={onFieldChange}
           editable
+          disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>
       <div className={classes.shortNameField}>
         <PersonaField
           label="SHORT NAME"
-          name="shortName"
-          onChange={onFieldChange}
-          value={shortName}
+          name="initials"
+          initialValue={initials}
+          onBlur={onUpdatePersona}
           editable
+          disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>
     </div>

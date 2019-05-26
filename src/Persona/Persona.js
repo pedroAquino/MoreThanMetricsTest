@@ -3,20 +3,17 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
-import Picture from '../shared/assets/capivara.jpg';
-import withPersonaState from './services/withPersonaState';
-import { compose } from 'ramda';
-import type { PersonaModel } from './services/personaFactory';
+import PersonaContainer from './containers/PersonaContainer';
+import ColumnsContainer from './containers/ColumnsContainer';
 
 type Props = {
   classes: any;
-  onFieldChange: any;
-  persona: PersonaModel;
 };
 
 const styles = theme => ({
     persona: {
 	    //height: '100vh',
+        minHeight: 992,
         width: 664,	
         borderRadius: '0 0 2px 2px',	
         backgroundColor: theme.colors.lightGray
@@ -49,111 +46,49 @@ const styles = theme => ({
 });
 
 function Persona(props: Props) {
-  const { classes, onFieldChange, persona } = props;
+  const { classes  } = props;
   return (
      <div className={classes.persona}>
-        <PersonaHeader persona={persona} onFieldChange={onFieldChange} />
+        <PersonaContainer>
+            { (persona, onUpdatePersona) => {
+                return <PersonaHeader 
+                        persona={persona}  
+                        onUpdatePersona={onUpdatePersona}
+                    /> 
+            }}
+        </PersonaContainer>
         <div className={classes.personaContent}>
-            <div className={classes.firstColumn}>
-                <ul>
-                    <li>
-                        <PersonaField 
-                            height={176}
-                            name="avatar" 
-                            kind="image" 
-                            label="IMAGE"
-                            src={Picture}
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            kind="number"
-                            label="AGE"
-                            value={28}
-                            name="age"
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            label="GENDER"
-                            value="Not defined"
-                            name="gender" 
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            kind="image-gallery"
-                            label="MOOD IMAGES"
-                            imageSources={[
-                                Picture,
-                                Picture
-                            ]}
-                            name="moodImages"
-                        />
-                    </li>
-                </ul>
-            </div>
-            <div className={classes.secondColumn}>
-                <ul>
-                    <li>
-                        <PersonaField
-                            label="OCCUPATION"
-                            value="Researcher"
-                            name="occupation" 
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            label="NATIONALITY"
-                            value="French"
-                            name="nationality"
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            label="MARITAL STATUS"
-                            value="Maried, 3 kids"
-                            name="maritalStatus" 
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            label="QUOTE"
-                            kind="long-text"
-                            formatedText={[
-                                <p>
-                                    “Life may not be the party we hoped for, but while we're here, we should dance.”
-                                </p>
-                            ]}
-                            name="quote"
-                        />
-                    </li>
-                    <li>
-                        <PersonaField
-                            label="DESCRIPTION"
-                            kind="long-text"
-                            formatedText={[
-                                <p>
-                                    Tess is that friendly neighbor next door. She has a secure job at the national railway company. Together with her husband, she has a monthly household income of  5000 Euro net.
-                                </p>,
-                                <p>
-                                    Tess loves to spend free time with her three kids. Marcus, her husband, loves being outdoors, so whenever possible the couple takes long hiking tours with their children.
-                                </p>,
-                                <p style={{fontWeight: 'bold'}}>
-                                    Tess is not very interested in technology. She wants things that just work.
-                                </p>
-                            ]}
-                            name="description"
-                        />
-                    </li>
-                </ul>
-            </div>
+            <ColumnsContainer>
+                { (columnsState) => {
+                    return columnsState.items.map((column, index) => {
+                        const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
+                        
+                        return <div key={column.id} className={colClass}>
+                            <ul>
+                                { column.fields.map(field => {
+                                   return (
+                                    <li key={field.id}>
+                                        <PersonaField 
+                                            height={field.fieldType === 'image' ? 176 : null}
+                                            name={field.title} 
+                                            kind={field.fieldType}
+                                            label={field.title.toUpperCase()}
+                                            src={field.src ? require(`../shared/assets/${field.src}`) : null}
+                                            imageSources={field.imageSources.map(src => require(`../shared/assets/${src}`))}
+                                            initialValue={field.data}
+                                            formatedText={field.formatedText}
+                                        />
+                                    </li>
+                                   ) 
+                                })}
+                            </ul>
+                        </div>
+                    })
+                }}
+            </ColumnsContainer>
         </div>
     </div>
   );
 };
 
-export default compose(
-    injectSheet(styles),
-    withPersonaState
-)(Persona);
+export default injectSheet(styles)(Persona);
