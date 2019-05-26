@@ -1,7 +1,6 @@
 // @flow
 import type { Field } from '../../Persona/services/fieldFactory';
 import type { Position } from './positionFactory';
-import positionFactory from './positionFactory';
 
 export type DraggingState = {
     field: ?Field;
