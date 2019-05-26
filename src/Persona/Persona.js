@@ -69,14 +69,16 @@ function Persona(props: Props) {
                                    return (
                                     <li key={field.id}>
                                         <PersonaField 
-                                            height={field.fieldType === 'image' ? 176 : null}
+                                            height={field.fieldType === 'image' ? 176 : 41}
                                             name={field.title} 
                                             kind={field.fieldType}
                                             label={field.title.toUpperCase()}
                                             src={field.src ? require(`../shared/assets/${field.src}`) : null}
                                             imageSources={field.imageSources.map(src => require(`../shared/assets/${src}`))}
                                             initialValue={field.data}
+                                            onBlur={value => console.log(value)}
                                             formatedText={field.formatedText}
+                                            editable={field.editable}
                                         />
                                     </li>
                                    ) 
