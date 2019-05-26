@@ -12,6 +12,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - JEST for unit tests
 
 ## Features
+Follows a brief summary of the features that I was able to complete compared with what was required.
+
 - [x] Layout and Ui according to invision specs 
 - [x] From header only make Name of persona real without editing functionality.
 - [x] User should be able to drag “elements” from sidebar to persona field columns. For this task please add just “Short text” element. 
