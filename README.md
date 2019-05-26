@@ -21,10 +21,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  - [x]  Data should be saved on ~input~ blur automatically (just console output, no real backend needed). 
  - [x]  Persona has two columns, for this task they are not editable.
  - [x] Fields could be dragged into columns (just the wide column is working for dragging)
- - [] dragged between columns and dragged within single column for sorting
+ - [ ] dragged between columns and dragged within single column for sorting
  - [x] For this task please add just “Short text” field. Field title not editable, just put field type there. Change the “cog” icon to “trash bin” and make it delete the field on click. 
  - [x] Text field data should be saved on blur. 
- - []  Any change in field position should be saved
+ - [ ]  Any change in field position should be saved
 
 ## Automated Tests
 Please note that I built tests for all the business and state management functions. You can run then with `npm test`
