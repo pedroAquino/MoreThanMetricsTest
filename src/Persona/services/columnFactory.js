@@ -65,7 +65,6 @@ export const removeFieldFromColumn = curry((columnState: ColumnState, field: Fie
     const columnWithOutField = Object.assign({}, column, {
         fields: column.fields
             .filter(f => f.id !== field.id)
-            .sort((prev, next) => prev.id - next.id)
     });
 
     const nextColumns: Array<Column> = columnState.items
@@ -73,7 +72,7 @@ export const removeFieldFromColumn = curry((columnState: ColumnState, field: Fie
         .concat([columnWithOutField])
         .sort((prev, next) => prev.id - next.id);
 
-    return Object.assign({}, columnState, { items: nextColumns });
+    return Object.assign({}, columnState, { entityStatus: 'STABLE', items: nextColumns });
 });
 
 export default columnFactory;

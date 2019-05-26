@@ -59,9 +59,9 @@ export const updateFieldComplete = (field: Field) => ({
     payload: field
 });
 
-export const removeField = (id: number) => ({
+export const removeField = (field: Field) => ({
     type: REMOVE_FIELD,
-    payload: id
+    payload: field
 });
 
 export const removeFieldComplete = (field: Field) => ({
@@ -99,10 +99,7 @@ export default function columnsReducer(state: ColumnState = initialState, action
         case REMOVE_FIELD:
             return Object.assign({}, state, { entityStatus: 'PERSISTING' });
         case REMOVE_FIELD_COMPLETE:
-            return pipe(
-                fieldFactory,
-                removeFieldFromColumn(state)
-            )(action.payload)
+            return removeFieldFromColumn(state, action.payload);
         default:
             return state;
     }

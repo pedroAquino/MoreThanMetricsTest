@@ -63,7 +63,7 @@ function* removeField(action) {
         action.payload
     );
 
-    yield put(removeFieldComplete(response));
+    yield put(removeFieldComplete(response.data));
 }
 
 

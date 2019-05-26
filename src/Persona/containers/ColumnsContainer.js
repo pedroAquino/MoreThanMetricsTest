@@ -12,7 +12,7 @@ type Props = {
   columns: ColumnState;
   dispatchGet: (personaId: number) => void;
   dispatchUpdate: (field: Field) => void;
-  dispatchRemoveField: (id: number) => void;
+  dispatchRemoveField: (field: ?Field) => void;
 };
 
 type State = {
@@ -42,7 +42,12 @@ class ColumnsContainer extends React.Component<Props, State>{
 
   /*:: onRemoveField: () => void */
   onRemoveField(fieldId: number) {
-     this.props.dispatchRemoveField(fieldId);
+      const field = this.props.columns.items
+        .map(item => item.fields)
+        .reduce((acc, value) => acc.concat(value), [])
+        .find(f => f.id === fieldId);
+    console.log(field);
+     this.props.dispatchRemoveField(field);
   }
   
   render() {
@@ -62,7 +67,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     dispatchGet: id => dispatch(getColumns(id)),
     dispatchUpdate: field => dispatch(updateField(field)),
-    dispatchRemoveField: id => dispatch(removeField(id))
+    dispatchRemoveField: field => dispatch(removeField(field))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColumnsContainer);

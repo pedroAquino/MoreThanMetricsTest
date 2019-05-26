@@ -146,7 +146,7 @@ const apiFactory = () => ({
     getFields: personaId => mockedHttpCall(`/personas/${personaId}/columns/fields`),
     createField: (personaId, field) => mockedHttpCall(`/personas/${personaId}/fields`, 'POST', field),
     updateField: (personaId, field) => mockedHttpCall(`/personas/${personaId}/fields/${field.id}`, 'PUT', field),
-    deleteField: (personaId, fieldId) => mockedHttpCall(`/personas/${personaId}/fields/${fieldId}`, 'DELETE')
+    deleteField: (personaId, field) => mockedHttpCall(`/personas/${personaId}/fields/${field.id}`, 'DELETE', field)
 });
 
 export default apiFactory;
