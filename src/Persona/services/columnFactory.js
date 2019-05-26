@@ -45,12 +45,13 @@ export const addFieldToColumn = curry((columnState: ColumnState, field: Field): 
     });
 
     const columnWithField = Object.assign({}, column, {
-        fields: column.fields.concat([parsedField])
+        fields: [parsedField, ...column.fields]
     });
 
     const nextColumns: Array<Column> = columnState.items
         .filter((column: Column) => column.id !== field.columnId)
-        .concat([columnWithField]);
+        .concat([columnWithField])
+        .sort((prev, next) => prev.id - next.id)
 
     return Object.assign({}, columnState, { items: nextColumns });
 });
