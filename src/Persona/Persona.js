@@ -61,7 +61,7 @@ function Persona(props: Props) {
         </PersonaContainer>
         <div className={classes.personaContent}>
             <ColumnsContainer>
-                { (columnsState, onUpdateFeld) => {
+                { (columnsState, onUpdateFeld, onRemoveField) => {
                     return columnsState.items.map((column, index) => {
                         const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
                         
@@ -95,6 +95,8 @@ function Persona(props: Props) {
                                             editable={field.editable}
                                             disabled={columnsState.entityStatus === 'PERSISTING'}
                                             isNew={field.isNew}
+                                            onTrashIconClick={onRemoveField}
+                                            id={field.id}
                                         />
                                     </li>
                                    ) 

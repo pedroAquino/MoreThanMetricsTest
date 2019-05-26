@@ -19,7 +19,9 @@ type Props = {
   disabled: boolean;
   hasErrors: boolean;
   isNew: boolean;
+  id: number;
   onBlur: (evt: any) => void;
+  onTrashIconClick: (evt: any) => void;
 };
 
 const styles = theme => ({
@@ -107,6 +109,9 @@ const styles = theme => ({
     },
     disabled: {
         opacity: '0.4'
+    },
+    cursorPointer: {
+        cursor: 'pointer'
     }
 });
 
@@ -173,7 +178,9 @@ function PersonaField(props: Props) {
       onBlur,
       disabled,
       hasErrors,
-      isNew
+      isNew,
+      onTrashIconClick,
+      id
     } = props;
 
     const fieldContent = {
@@ -186,7 +193,6 @@ function PersonaField(props: Props) {
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
     const disabledStyles = disabled ? classes.disabled : '';
     const fieldError = hasErrors ? classes.fieldError : '';
-    const icon = isNew ? 'trash' : 'cog';
 
   return (
     <div style={{ height: fieldHeight }} className={`${fieldError || classes.field} ${disabledStyles}`}>
@@ -194,9 +200,19 @@ function PersonaField(props: Props) {
             <div className={classes.left}>
                 {label}
             </div>
-            <div className={classes.right}>
-                <FontAwesomeIcon icon={icon} />
-            </div>
+            {
+                isNew ? (
+                    <div onClick={() => onTrashIconClick(id)} 
+                        className={`${classes.right} ${classes.cursorPointer}`}>
+                        <FontAwesomeIcon icon="trash" />
+                    </div>
+                ) : (
+                    <div className={classes.right}>
+                        <FontAwesomeIcon icon="cog" />
+                    </div>
+                )
+            }
+            
         </div>
         <div className={classes.fieldContent}>
             {fieldContent[kind]}
