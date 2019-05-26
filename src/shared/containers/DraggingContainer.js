@@ -26,7 +26,7 @@ class DraggingContainer extends React.Component<Props, State>{
     this.onStart = this.onStart.bind(this);
     this.onStop = this.onStop.bind(this);
     this.field = fieldFactory({
-      title: 'aditional info',
+      title: 'info',
       fieldType: 'short-text',
       columnId: 2
     });

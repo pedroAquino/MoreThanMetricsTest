@@ -58,29 +58,4 @@ export const addFieldToColumn = curry((columnState: ColumnState, field: Field): 
     return Object.assign({}, columnState, { items: nextColumns });
 });
 
-
-export const updateFieldInState = curry(
-    (columnState: ColumnState, field: Field): ColumnState => {
-        const column = columnState.items
-                .find(column => column.id === field.columnId);
-        
-        const fields = column.field
-                .filter(f => f.id !== field.id)
-                .concat([field])
-                .sort((prev, next) => prev.id - next.id);
-        
-        const columnWithField = Object.assign({}, column, {
-            fields: [...fields]
-        });
-
-        const nextColumns: Array<Column> = columnState.items
-            .filter((column: Column) => column.id !== field.columnId)
-            .concat([columnWithField])
-            .sort((prev, next) => prev.id - next.id);
-
-        return Object.assign({}, columnState, { items: nextColumns });
-    } 
-);
-
-
 export default columnFactory;

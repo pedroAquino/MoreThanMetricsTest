@@ -61,7 +61,7 @@ function Persona(props: Props) {
         </PersonaContainer>
         <div className={classes.personaContent}>
             <ColumnsContainer>
-                { (columnsState) => {
+                { (columnsState, onUpdateFeld) => {
                     return columnsState.items.map((column, index) => {
                         const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
                         
@@ -90,9 +90,10 @@ function Persona(props: Props) {
                                             src={field.src ? require(`../shared/assets/${field.src}`) : null}
                                             imageSources={field.imageSources.map(src => require(`../shared/assets/${src}`))}
                                             initialValue={field.data}
-                                            onBlur={value => console.log(value)}
+                                            onBlur={onUpdateFeld}
                                             formatedText={field.formatedText}
                                             editable={field.editable}
+                                            disabled={columnsState.entityStatus === 'PERSISTING'}
                                         />
                                     </li>
                                    ) 

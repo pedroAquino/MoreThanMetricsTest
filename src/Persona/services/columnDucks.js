@@ -3,7 +3,7 @@ import type { EntityState } from '../../shared/state/entityStateFactory';
 import type { Column } from './columnFactory';
 import type { Field } from './fieldFactory';
 import fieldFactory from './fieldFactory';
-import columnFactory, { addFieldToColumn, updateFieldInState } from './columnFactory';
+import columnFactory, { addFieldToColumn } from './columnFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose, pipe } from 'ramda';
 import { setToLoadingState, setToErrorState } from '../../shared/utils/stateHelper';
@@ -80,13 +80,9 @@ export default function columnsReducer(state: ColumnState = initialState, action
         case ADD_FIELD_COMPLETE:
             return Object.assign({}, state, { entityStatus: 'STABLE' });
         case UPDATE_FIELD:
-            return Object.assign({}, state, 'PERSISTING');
-        case UPDATE_FIELD_COMPLETE: {
-            return pipe(
-                fieldFactory,
-                updateFieldInState(state)
-            )(action.payload);
-        }
+            return Object.assign({}, state, { entityStatus: 'PERSISTING' });
+        case UPDATE_FIELD_COMPLETE:
+            return Object.assign({}, state, { entityStatus: 'STABLE' });
         default:
             return state;
     }
