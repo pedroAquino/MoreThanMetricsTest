@@ -43,7 +43,7 @@ const styles = theme => ({
 function PersonaHeader(props: Props) {
   const { 
     classes, 
-    persona: { name, initials, entityStatus },
+    persona: { name, initials, entityStatus, errors },
     onUpdatePersona
   } = props;
   return (
@@ -58,6 +58,7 @@ function PersonaHeader(props: Props) {
           onBlur={onUpdatePersona}
           name="name"
           editable
+          hasErrors={!!errors['name']}
           disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>
@@ -68,6 +69,7 @@ function PersonaHeader(props: Props) {
           initialValue={initials}
           onBlur={onUpdatePersona}
           editable
+          hasErrors={!!errors['initials']}
           disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>

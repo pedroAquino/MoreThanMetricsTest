@@ -3,13 +3,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import type { PersonaState } from '../services/personaDucks';
-import { updatePersona, getPersona } from '../services/personaDucks';
+import { updatePersona, updatePersonaError, getPersona } from '../services/personaDucks';
+import { validatePersona } from '../services/personaFactory';
 
 export const DEFAULT_PERSONA_ID = 20;
 
 type Props = {
     dispatchGet: (id: number) => void;
     dispatchUpdate: (persona: PersonaState) => void;
+    dispatchUpdateError: (error: any) => void;
     children: any;
     persona: PersonaState;
 }
@@ -26,8 +28,13 @@ class PersonaContainer extends React.Component<Props, any>{
 
     /*:: onUpdatePersona: () => void */
     onUpdatePersona(persona: any) {
-        const parsed = Object.assign({}, this.props.persona, persona);
-        this.props.dispatchUpdate(parsed);
+        const errors = validatePersona(persona);
+        if (errors) {
+            this.props.dispatchUpdateError(errors);
+        } else {
+            const parsed = Object.assign({}, this.props.persona, persona);
+            this.props.dispatchUpdate(parsed);
+        }
     }
 
     render() {
@@ -44,7 +51,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     dispatchGet: (id: number) => dispatch(getPersona(id)),
-    dispatchUpdate: (persona: PersonaState) => dispatch(updatePersona(persona))
+    dispatchUpdate: (persona: PersonaState) => dispatch(updatePersona(persona)),
+    dispatchUpdateError: (error: any) => dispatch(updatePersonaError(error))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonaContainer);
