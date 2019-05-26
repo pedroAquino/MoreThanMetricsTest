@@ -174,6 +174,12 @@ describe('columns reducer',  () => {
         const result = columnsReducer(prevState, action);
         expect(result.items.length).toBe(2);
         
+        const columnsSorted = result.items
+            .map(item => item.id)
+            .sort((prev, next) => prev - next);
+
+        expect(result.items.map(item => item.id)).toEqual(columnsSorted);
+
         const column1 = result.items.find(i => i.id === 1); 
         expect(column1.fields.length).toBe(2);
         expect(column1.fields.find(f => f.id === 3)).toEqual({
