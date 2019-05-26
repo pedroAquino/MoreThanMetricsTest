@@ -6,6 +6,7 @@ import PersonaField from './components/PersonaField';
 import FieldPlaceHolder from './components/FieldPlaceHolder';
 import PersonaContainer from './containers/PersonaContainer';
 import ColumnsContainer from './containers/ColumnsContainer';
+import DraggingContainer from '../shared/containers/DraggingContainer';
 
 type Props = {
   classes: any;
@@ -66,6 +67,18 @@ function Persona(props: Props) {
                         
                         return <div key={column.id} className={colClass}>
                             <ul>
+                                {
+                                    index === 1 && (
+                                        <DraggingContainer>
+                                            { (draggingState) => {
+                                                return draggingState.dragStatus === 'DRAGGING' ? (
+                                                    <FieldPlaceHolder />
+                                                ) : null
+                                            }}
+                                        </DraggingContainer>
+                                    )
+                                }
+                                
                                 { column.fields.map(field => {
                                    return (
                                     <li key={field.id}>

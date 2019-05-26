@@ -19,7 +19,6 @@ type State = {
 
 class DraggingContainer extends React.Component<Props, State>{
   
-  
   render() {
     return this.props.children(
       this.props.dragging
