@@ -3,7 +3,7 @@ import type { EntityState } from '../../shared/state/entityStateFactory';
 import type { Column } from './columnFactory';
 import type { Field } from './fieldFactory';
 import fieldFactory from './fieldFactory';
-import columnFactory, { addFieldToColumn } from './columnFactory';
+import columnFactory, { addFieldToColumn, updateFieldInState } from './columnFactory';
 import { withEntityState } from '../../shared/state/entityStateFactory';
 import { compose, pipe } from 'ramda';
 import { setToLoadingState, setToErrorState } from '../../shared/utils/stateHelper';
@@ -18,6 +18,9 @@ export const GET_COLUMNS_COMPLETE = 'GET_COLUMNS_COMPLETE';
 
 export const ADD_FIELD = 'ADD_FIELD';
 export const ADD_FIELD_COMPLETE = 'ADD_FIELD_COMPLETE';
+
+export const UPDATE_FIELD = 'UPDATE_FIELD';
+export const UPDATE_FIELD_COMPLETE = 'UPDATE_FIELD_COMPLETE';
 
 export const getColumns = (personaId: number) => ({
     type: GET_COLUMNS,
@@ -41,7 +44,17 @@ export const addField = (field: Field) => ({
 
 export const addFieldComplete = () => ({
     type: ADD_FIELD_COMPLETE
-})
+});
+
+export const updateField = (field: Field) => ({
+    type: UPDATE_FIELD,
+    payload: field
+});
+
+export const updateFieldComplete = (field: Field) => ({
+    type: UPDATE_FIELD_COMPLETE,
+    payload: field
+});
 
 const withiItems = column => ({ ...column, items: [columnFactory()] });
  
@@ -65,7 +78,15 @@ export default function columnsReducer(state: ColumnState = initialState, action
             )(action.payload);
         }
         case ADD_FIELD_COMPLETE:
-            return Object.assign({}, state, { entityStatus: 'STABLE' })
+            return Object.assign({}, state, { entityStatus: 'STABLE' });
+        case UPDATE_FIELD:
+            return Object.assign({}, state, 'PERSISTING');
+        case UPDATE_FIELD_COMPLETE: {
+            return pipe(
+                fieldFactory,
+                updateFieldInState(state)
+            )(action.payload);
+        }
         default:
             return state;
     }
