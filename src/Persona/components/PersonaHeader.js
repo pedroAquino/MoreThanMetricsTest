@@ -69,7 +69,7 @@ function PersonaHeader(props: Props) {
           initialValue={initials}
           onBlur={onUpdatePersona}
           editable
-          hasErrors={!!errors['initials']}
+          hasErrors={errors['initials']}
           disabled={entityStatus === 'LOADING' || entityStatus === 'PERSISTING'}
         />
       </div>

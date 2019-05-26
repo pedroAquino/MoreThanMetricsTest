@@ -26,15 +26,20 @@ class PersonaContainer extends React.Component<Props, any>{
         this.props.dispatchGet(DEFAULT_PERSONA_ID);
     }
 
+    componentDidUpdate(prevProps: Props) {
+        if (prevProps.persona.name !== this.props.persona.name ||
+            prevProps.persona.initials !== this.props.persona.initials) {
+            const errors = validatePersona(this.props.persona);
+            if (errors) {
+                this.props.dispatchUpdateError(errors);
+            }
+        }
+    }
+
     /*:: onUpdatePersona: () => void */
     onUpdatePersona(persona: any) {
-        const errors = validatePersona(persona);
-        if (errors) {
-            this.props.dispatchUpdateError(errors);
-        } else {
-            const parsed = Object.assign({}, this.props.persona, persona);
-            this.props.dispatchUpdate(parsed);
-        }
+        const parsed = Object.assign({}, this.props.persona, persona);
+        this.props.dispatchUpdate(parsed);
     }
 
     render() {
