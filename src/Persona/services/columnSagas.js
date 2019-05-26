@@ -33,7 +33,6 @@ function* getColumns(action) {
 }
 
 function* addField(action) {
-    console.log('ACTION', action.payload);
     const response = yield call(
         apiFactory().createField,
         action.payload,
