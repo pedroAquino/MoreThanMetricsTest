@@ -1,4 +1,33 @@
+## More Than Metrics Frontend Task
+
+This is a test made for more than metrics frontend position.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Technology Stack
+- React is the main ui library,
+- Redux for state management,
+- Flow for static type checking
+- JSS for CSS in JS stylesheets
+- JEST for unit tests
+
+## Features
+- [x] Layout and Ui according to invision specs 
+- [x] From header only make Name of persona real without editing functionality.
+- [x] User should be able to drag “elements” from sidebar to persona field columns. For this task please add just “Short text” element. 
+- [x] Persona has main info: avatar, color, name and initials. Please implement Name and Initials editing
+ - [x] When user changes name, initials should automatically take first 3 letters and uppercase them. Initials also should be editable on their own
+ - [x] Empty name or initials should make respective field have red background visualising failed validation
+ - [x]  Data should be saved on ~input~ blur automatically (just console output, no real backend needed). 
+ - [x]  Persona has two columns, for this task they are not editable.
+ - [x] Fields could be dragged into columns (just the wide column is working for dragging)
+ - [] dragged between columns and dragged within single column for sorting
+ - [x] For this task please add just “Short text” field. Field title not editable, just put field type there. Change the “cog” icon to “trash bin” and make it delete the field on click. 
+ - [x] Text field data should be saved on blur. 
+ - []  Any change in field position should be saved
+
+## Automated Tests
+Please note that I built tests for all the business and state management functions. You can run then with `npm test`
 
 ## Available Scripts
 
@@ -27,42 +56,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

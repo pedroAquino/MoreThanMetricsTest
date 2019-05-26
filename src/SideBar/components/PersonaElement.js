@@ -30,7 +30,8 @@ const styles  = theme => ({
         fontSize: 40,
         fontWeight: 300,
         color: '#B1B6B6',
-        padding: '13px 45px 0px 46px'
+        padding: '13px 45px 0px 46px',
+        cursor: 'move'
     },
     longText: {
         fontSize: 11,

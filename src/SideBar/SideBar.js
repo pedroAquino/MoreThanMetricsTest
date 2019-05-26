@@ -5,6 +5,8 @@ import SideBarHeader from './components/SideBarHeader';
 import Disclaymer from '../shared/components/Disclaymer';
 import PersonaElement from './components/PersonaElement';
 import MessageInfo from '../shared/components/MessageInfo';
+import Draggable from 'react-draggable';
+import DraggingContainer from '../shared/containers/DraggingContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 type Props = {
@@ -66,7 +68,20 @@ export function SideBar(props: Props) {
         </Disclaymer>
       </div>
       <div className={classes.elements}>
-        <PersonaElement kind="short-text" />
+        <DraggingContainer>
+          { (draggingState, onStart, onStop) => {
+            return <Draggable 
+                handle="#short-text"
+                onStart={onStart}
+                position={{ x: 0, y: 0 }}
+                onStop={onStop}
+              >
+                <div id="short-text">
+                  <PersonaElement kind="short-text" />
+                </div>
+            </Draggable>
+          }}
+        </DraggingContainer>
         <PersonaElement kind="long-text" />
       </div>
       <div className={classes.elements}>

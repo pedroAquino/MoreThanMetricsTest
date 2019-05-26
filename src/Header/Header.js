@@ -3,6 +3,7 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import HeaderTitle from './components/HeaderTitle';
 import HeaderMenu from './components/HeaderMenu';
+import PersonaContainer from '../Persona/containers/PersonaContainer';
 
 type Props = {
   classes: any;
@@ -28,7 +29,9 @@ function Header(props: Props) {
   return (
     <header id="header" className={classes.mainHeader}>
       <div className={classes.headerContent}>
-        <HeaderTitle />
+        <PersonaContainer>
+          { persona =>  <HeaderTitle title={persona.name} />}
+        </PersonaContainer>
         <div className={classes.headerMenu}>
           <HeaderMenu />
         </div>

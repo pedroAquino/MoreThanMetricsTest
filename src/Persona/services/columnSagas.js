@@ -3,7 +3,13 @@ import apiFactory from './apiFactory';
 import {
     GET_COLUMNS,
     getColumnsError,
-    getColumnsComplete
+    getColumnsComplete,
+    ADD_FIELD,
+    addFieldComplete,
+    UPDATE_FIELD,
+    updateFieldComplete,
+    REMOVE_FIELD,
+    removeFieldComplete
 } from './columnDucks';
 import { createColumnsWithFields } from './columnFactory';
 
@@ -30,6 +36,40 @@ function* getColumns(action) {
     }
 }
 
+function* addField(action) {
+    const response = yield call(
+        apiFactory().createField,
+        '20',
+        action.payload,
+    );
+
+    yield put(addFieldComplete(response));
+}
+
+function* updateField(action) {
+    const response = yield call(
+        apiFactory().updateField,
+        '20',
+        action.payload,
+    );
+
+    yield put(updateFieldComplete(response));
+}
+
+function* removeField(action) {
+    const response = yield call(
+        apiFactory().deleteField,
+        '20',
+        action.payload
+    );
+
+    yield put(removeFieldComplete(response.data));
+}
+
+
 export default [
-    takeLatest(GET_COLUMNS, getColumns)
+    takeLatest(GET_COLUMNS, getColumns),
+    takeLatest(ADD_FIELD, addField),
+    takeLatest(UPDATE_FIELD, updateField),
+    takeLatest(REMOVE_FIELD, removeField)
 ];

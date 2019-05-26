@@ -22,4 +22,19 @@ const personaFactory = ({
     avatar
 });
 
+export const validatePersona = (persona: PersonaModel) => {
+    const parsed = personaFactory(persona);
+    const errors = {};
+
+    if (!parsed['name']) {
+        errors['name'] = 'Name is required';
+    }
+
+    if (!parsed['initials']) {
+        errors['initial'] = 'Initials is required';
+    }
+
+    return errors;
+};
+
 export default personaFactory;

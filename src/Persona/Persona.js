@@ -3,8 +3,10 @@ import * as React from 'react';
 import injectSheet from "react-jss";
 import PersonaHeader from './components/PersonaHeader';
 import PersonaField from './components/PersonaField';
+import FieldPlaceHolder from './components/FieldPlaceHolder';
 import PersonaContainer from './containers/PersonaContainer';
 import ColumnsContainer from './containers/ColumnsContainer';
+import DraggingContainer from '../shared/containers/DraggingContainer';
 
 type Props = {
   classes: any;
@@ -59,24 +61,42 @@ function Persona(props: Props) {
         </PersonaContainer>
         <div className={classes.personaContent}>
             <ColumnsContainer>
-                { (columnsState) => {
+                { (columnsState, onUpdateFeld, onRemoveField) => {
                     return columnsState.items.map((column, index) => {
                         const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
                         
                         return <div key={column.id} className={colClass}>
                             <ul>
+                                {
+                                    index === 1 && (
+                                        <DraggingContainer>
+                                            { (draggingState) => {
+                                                return draggingState.dragStatus === 'DRAGGING' ? (
+                                                    <FieldPlaceHolder />
+                                                ) : null
+                                            }}
+                                        </DraggingContainer>
+                                    )
+                                }
+                                
                                 { column.fields.map(field => {
                                    return (
                                     <li key={field.id}>
                                         <PersonaField 
-                                            height={field.fieldType === 'image' ? 176 : null}
+                                            height={field.fieldType === 'image' ? 176 : 41}
                                             name={field.title} 
                                             kind={field.fieldType}
                                             label={field.title.toUpperCase()}
                                             src={field.src ? require(`../shared/assets/${field.src}`) : null}
                                             imageSources={field.imageSources.map(src => require(`../shared/assets/${src}`))}
                                             initialValue={field.data}
+                                            onBlur={onUpdateFeld}
                                             formatedText={field.formatedText}
+                                            editable={field.editable}
+                                            disabled={columnsState.entityStatus === 'PERSISTING'}
+                                            isNew={field.isNew}
+                                            onTrashIconClick={onRemoveField}
+                                            id={field.id}
                                         />
                                     </li>
                                    ) 

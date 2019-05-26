@@ -17,12 +17,20 @@ type Props = {
   editable: boolean;
   name: string;
   disabled: boolean;
+  hasErrors: boolean;
+  isNew: boolean;
+  id: number;
   onBlur: (evt: any) => void;
+  onTrashIconClick: (evt: any) => void;
 };
 
 const styles = theme => ({
     field: {
         background: theme.colors.white,
+        padding: '7px 6.96px 8px 12px'
+    },
+    fieldError: {
+        background: '#fee9ed',
         padding: '7px 6.96px 8px 12px'
     },
     fieldHeader: {
@@ -55,7 +63,8 @@ const styles = theme => ({
         border: '1px solid transparent',
         '&:focus': {
             outline: 'none'
-        }
+        },
+        background: 'transparent'
     },
     formatedText: {
         marginTop: 16,
@@ -100,6 +109,9 @@ const styles = theme => ({
     },
     disabled: {
         opacity: '0.4'
+    },
+    cursorPointer: {
+        cursor: 'pointer'
     }
 });
 
@@ -164,7 +176,11 @@ function PersonaField(props: Props) {
       editable,
       name,
       onBlur,
-      disabled
+      disabled,
+      hasErrors,
+      isNew,
+      onTrashIconClick,
+      id
     } = props;
 
     const fieldContent = {
@@ -174,20 +190,29 @@ function PersonaField(props: Props) {
         'image-gallery': <ImgGallery classes={classes} imageSources={imageSources} />,
         'number': <ShortText classes={classes} name={name} onBlur={onBlur} editable={editable} initialValue={initialValue} />,
     };
-
     const fieldHeight = kind === 'long-text'  || kind === 'image-gallery' ? 'auto' : height;
-
     const disabledStyles = disabled ? classes.disabled : '';
+    const fieldError = hasErrors ? classes.fieldError : '';
 
   return (
-    <div style={{ height: fieldHeight }} className={`${classes.field} ${disabledStyles}`}>
+    <div style={{ height: fieldHeight }} className={`${fieldError || classes.field} ${disabledStyles}`}>
         <div className={classes.fieldHeader}>
             <div className={classes.left}>
                 {label}
             </div>
-            <div className={classes.right}>
-                <FontAwesomeIcon icon="cog" />
-            </div>
+            {
+                isNew ? (
+                    <div onClick={() => onTrashIconClick(id)} 
+                        className={`${classes.right} ${classes.cursorPointer}`}>
+                        <FontAwesomeIcon icon="trash" />
+                    </div>
+                ) : (
+                    <div className={classes.right}>
+                        <FontAwesomeIcon icon="cog" />
+                    </div>
+                )
+            }
+            
         </div>
         <div className={classes.fieldContent}>
             {fieldContent[kind]}

@@ -2,6 +2,7 @@ import columnsReducer, {
     getColumns,
     getColumnsError,
     getColumnsComplete,
+    addField,
     initialState
 } from './columnDucks';
 
@@ -36,6 +37,37 @@ describe('column related actions', () => {
            payload: [...columns]
        });
    }); 
+
+   it('should create an adwd field action', () => {
+       const field = {
+            id: 1,
+            title: "Address",
+            fieldType: "short-text",
+            data: "Rua anita garibaldi, 100, Jd Guanabara, Ribeirão Pires, Brazil",
+            columnId: 1,
+            prevId :null,
+            nextId: null,
+            src: '',
+            imageSources: [],
+            formatedText: []
+       };
+       const result = addField(field);
+       expect(result).toEqual({
+           type: 'ADD_FIELD',
+           payload: {
+            id: 1,
+            title: "Address",
+            fieldType: "short-text",
+            data: "Rua anita garibaldi, 100, Jd Guanabara, Ribeirão Pires, Brazil",
+            columnId: 1,
+            prevId :null,
+            nextId: null,
+            src: '',
+            imageSources: [],
+            formatedText: []
+           }
+       });
+   });
 });
 
 describe('columns reducer',  () => {
@@ -83,5 +115,87 @@ describe('columns reducer',  () => {
             entityStatus: 'STABLE',
             items: [...action.payload]
         });
+    });
+
+    it('should add a field to a specific column', () => {
+        const action = addField({
+            title: "Address",
+            fieldType: "short-text",
+            data: "Rua anita garibaldi, 100, Jd Guanabara, Ribeirão Pires, Brazil",
+            columnId: 1,
+            prevId :null,
+            nextId: null,
+            src: '',
+            imageSources: [],
+            formatedText: []
+        });
+
+        const prevState = {
+            items: [
+                {
+                    id: 1,
+                    width: 'thin',
+                    fields: [
+                        {
+                            id: 1,
+                            title: "Some Field",
+                            fieldType: "short-text",
+                            data: "Some data",
+                            columnId: 1,
+                            prevId :null,
+                            nextId: null,
+                            src: '',
+                            imageSources: [],
+                            formatedText: []
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    width: 'thin',
+                    fields: [
+                        {
+                            id: 2,
+                            title: "Some Field",
+                            fieldType: "short-text",
+                            data: "Some data",
+                            columnId: 1,
+                            prevId :null,
+                            nextId: null,
+                            src: '',
+                            imageSources: [],
+                            formatedText: []
+                        }
+                    ]
+                }
+            ]
+        };
+
+        const result = columnsReducer(prevState, action);
+        expect(result.items.length).toBe(2);
+        
+        const columnsSorted = result.items
+            .map(item => item.id)
+            .sort((prev, next) => prev - next);
+
+        expect(result.items.map(item => item.id)).toEqual(columnsSorted);
+
+        const column1 = result.items.find(i => i.id === 1); 
+        expect(column1.fields.length).toBe(2);
+        expect(column1.fields.find(f => f.id === 3)).toEqual({
+            id: 3,
+            title: "Address",
+            fieldType: "short-text",
+            data: "Rua anita garibaldi, 100, Jd Guanabara, Ribeirão Pires, Brazil",
+            columnId: 1,
+            prevId :1,
+            nextId: null,
+            src: '',
+            imageSources: [],
+            formatedText: []
+        });
+
+        const column2 = result.items.find(i => i.id === 2);
+        expect(column2.fields.length).toBe(1);
     });
 });
