@@ -17,7 +17,10 @@ it('should create a field according to object', () => {
         data: "persona.png",
         columnId: 1,
         prevId :null,
-        nextId: 2
+        nextId: 2,
+        src: 'persona.png',
+        imageSources: [],
+        formatedText: []
     });
 });
 
