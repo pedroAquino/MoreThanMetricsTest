@@ -54,7 +54,24 @@ export const addFieldToColumn = curry((columnState: ColumnState, field: Field): 
     const nextColumns: Array<Column> = columnState.items
         .filter((column: Column) => column.id !== field.columnId)
         .concat([columnWithField])
-        .sort((prev, next) => prev.id - next.id)
+        .sort((prev, next) => prev.id - next.id);
+
+    return Object.assign({}, columnState, { items: nextColumns });
+});
+
+export const removeFieldFromColumn = curry((columnState: ColumnState, field: Field): ColumnState => {
+    const column: Column = columnFactory(columnState.items.find(column => column.id === field.columnId));
+
+    const columnWithOutField = Object.assign({}, column, {
+        fields: column.fields
+            .filter(f => f.id !== field.id)
+            .sort((prev, next) => prev.id - next.id)
+    });
+
+    const nextColumns: Array<Column> = columnState.items
+        .filter((column: Column) => column.id !== field.columnId)
+        .concat([columnWithOutField])
+        .sort((prev, next) => prev.id - next.id);
 
     return Object.assign({}, columnState, { items: nextColumns });
 });

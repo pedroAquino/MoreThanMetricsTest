@@ -7,7 +7,9 @@ import {
     ADD_FIELD,
     addFieldComplete,
     UPDATE_FIELD,
-    updateFieldComplete
+    updateFieldComplete,
+    REMOVE_FIELD,
+    removeFieldComplete
 } from './columnDucks';
 import { createColumnsWithFields } from './columnFactory';
 
@@ -54,8 +56,20 @@ function* updateField(action) {
     yield put(updateFieldComplete(response));
 }
 
+function* removeField(action) {
+    const response = yield call(
+        apiFactory().deleteField,
+        '20',
+        action.payload
+    );
+
+    yield put(removeFieldComplete(response));
+}
+
+
 export default [
     takeLatest(GET_COLUMNS, getColumns),
     takeLatest(ADD_FIELD, addField),
-    takeLatest(UPDATE_FIELD, updateField)
+    takeLatest(UPDATE_FIELD, updateField),
+    takeLatest(REMOVE_FIELD, removeField)
 ];
