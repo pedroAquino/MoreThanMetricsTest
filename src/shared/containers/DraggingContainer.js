@@ -35,14 +35,12 @@ class DraggingContainer extends React.Component<Props, State>{
     this.props.dispatchStart(this.field);
   }
 
-
   /*:: onStop: () => void */
   onStop({ clientX, clientY }: any) {
     const position = positionFactory({
       x: clientX, 
       y: clientY
     });
-    console.log('POSITION', position);
     this.props.dispatchStop(this.field, position);
   }
 
