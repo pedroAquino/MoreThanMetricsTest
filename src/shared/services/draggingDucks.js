@@ -10,6 +10,7 @@ export type DraggingState = {
 
 export const START_DRAGGING = 'START_DRAGGING';
 export const STOP_DRAGGING = 'STOP_DRAGGING';
+export const END_DRAGGING = 'END_DRAGGING';
 
 export const startDragging = (field: Field) => ({
     type: START_DRAGGING,
@@ -19,6 +20,10 @@ export const startDragging = (field: Field) => ({
 export const stopDragging = (field: Field, position: Position) => ({
     type: STOP_DRAGGING,
     payload: { field: field, position: position }
+});
+
+export const endDragging = () => ({
+    type: END_DRAGGING
 });
 
 const initialState: DraggingState = {
@@ -37,6 +42,8 @@ export default function draggingReducer(state: DraggingState = initialState, act
                 field: action.payload.field,
                 position: action.payload.position
             });
+        case END_DRAGGING:
+            return { ...initialState };
         default:
             return state;
     }

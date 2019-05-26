@@ -7,6 +7,7 @@ import type { DraggingState } from '../services/draggingDucks';
 import { startDragging, stopDragging } from '../services/draggingDucks';
 import fieldFactory from '../../Persona/services/fieldFactory';
 import positionFactory from '../services/positionFactory';
+import { addField } from '../../Persona/services/columnDucks';
 
 type Props = {
   dragging: DraggingState;
@@ -26,7 +27,8 @@ class DraggingContainer extends React.Component<Props, State>{
     this.onStop = this.onStop.bind(this);
     this.field = fieldFactory({
       title: 'aditional info',
-      fieldType: 'short-text'
+      fieldType: 'short-text',
+      columnId: 2
     });
   }
   
@@ -42,6 +44,7 @@ class DraggingContainer extends React.Component<Props, State>{
       y: clientY
     });
     this.props.dispatchStop(this.field, position);
+    this.props.dispatchAddField(this.field);
   }
 
   render() {
@@ -59,7 +62,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   dispatchStart: (field: Field) => dispatch(startDragging(field)),
-  dispatchStop: (field: Field, position: Position) => dispatch(stopDragging(field, position))
+  dispatchStop: (field: Field, position: Position) => dispatch(stopDragging(field, position)),
+  dispatchAddField: (field: Field) => dispatch(addField(field))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DraggingContainer);

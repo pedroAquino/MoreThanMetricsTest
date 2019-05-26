@@ -34,7 +34,8 @@ export const addFieldToColumn = curry((columnState: ColumnState, field: Field): 
             (acc, value) => acc.concat(value),
             []
         )
-        .map(field => field.id);
+        .map(field => field.id)
+        .sort((prev, next) => prev - next);
 
     const column: Column = columnFactory(columnState.items.find(column => column.id === field.columnId));
     const parsedField = Object.assign({}, field, { 
