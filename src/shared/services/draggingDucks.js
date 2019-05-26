@@ -3,7 +3,7 @@ import type { Field } from '../../Persona/services/fieldFactory';
 import type { Position } from './positionFactory';
 import positionFactory from './positionFactory';
 
-type DraggingState = {
+export type DraggingState = {
     field: ?Field;
     position: ?Position;
     dragStatus: 'DRAGGING' | 'PARKED'
