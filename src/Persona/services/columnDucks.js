@@ -15,7 +15,9 @@ export type ColumnState = EntityState & {
 export const GET_COLUMNS = 'GET_COLUMNS';
 export const GET_COLUMNS_ERROR = 'GET_COLUMNS_ERROR';
 export const GET_COLUMNS_COMPLETE = 'GET_COLUMNS_COMPLETE';
+
 export const ADD_FIELD = 'ADD_FIELD';
+export const ADD_FIELD_COMPLETE = 'ADD_FIELD_COMPLETE';
 
 export const getColumns = (personaId: number) => ({
     type: GET_COLUMNS,
@@ -36,6 +38,10 @@ export const addField = (field: Field) => ({
     type: ADD_FIELD,
     payload: field
 });
+
+export const addFieldComplete = () => ({
+    type: ADD_FIELD_COMPLETE
+})
 
 const withiItems = column => ({ ...column, items: [columnFactory()] });
  
@@ -58,6 +64,8 @@ export default function columnsReducer(state: ColumnState = initialState, action
                 addFieldToColumn(state)
             )(action.payload);
         }
+        case ADD_FIELD_COMPLETE:
+            return Object.assign({}, state, { entityStatus: 'STABLE' })
         default:
             return state;
     }

@@ -3,7 +3,9 @@ import apiFactory from './apiFactory';
 import {
     GET_COLUMNS,
     getColumnsError,
-    getColumnsComplete
+    getColumnsComplete,
+    ADD_FIELD,
+    addFieldComplete
 } from './columnDucks';
 import { createColumnsWithFields } from './columnFactory';
 
@@ -30,6 +32,18 @@ function* getColumns(action) {
     }
 }
 
+function* addField(action) {
+    console.log('ACTION', action.payload);
+    const response = yield call(
+        apiFactory().createField,
+        action.payload,
+        '20'
+    );
+
+    yield put(addFieldComplete(response));
+}
+
 export default [
-    takeLatest(GET_COLUMNS, getColumns)
+    takeLatest(GET_COLUMNS, getColumns),
+    takeLatest(ADD_FIELD, addField)
 ];
