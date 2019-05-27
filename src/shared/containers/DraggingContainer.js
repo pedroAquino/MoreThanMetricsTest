@@ -4,17 +4,16 @@ import { connect } from 'react-redux';
 import type { Field } from '../../Persona/services/fieldFactory';
 import type { Position } from '../services/positionFactory';
 import type { DraggingState } from '../services/draggingDucks';
-import { startDragging, stopDragging } from '../services/draggingDucks';
+import { startDragging, stopDragging, endDragging } from '../services/draggingDucks';
 import fieldFactory from '../../Persona/services/fieldFactory';
 import positionFactory from '../services/positionFactory';
-import { addField } from '../../Persona/services/columnDucks';
 
 type Props = {
   dragging: DraggingState;
   children: any;
   dispatchStart: (field: Field) => void;
   dispatchStop: (field: Field, position: Position) => void;
-  dispatchAddField: (field: Field) => void;
+  dispatchEnd: () => void;
 };
 
 type State = {
@@ -48,7 +47,7 @@ class DraggingContainer extends React.Component<Props, State>{
       y: clientY
     });
     this.props.dispatchStop(this.field, position);
-    this.props.dispatchAddField(this.field);
+    this.props.dispatchEnd();
   }
 
   render() {
@@ -67,7 +66,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   dispatchStart: (field: Field) => dispatch(startDragging(field)),
   dispatchStop: (field: Field, position: Position) => dispatch(stopDragging(field, position)),
-  dispatchAddField: (field: Field) => dispatch(addField(field))
+  dispatchEnd: () => dispatch(endDragging())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DraggingContainer);

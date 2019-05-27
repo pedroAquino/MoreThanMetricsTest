@@ -47,10 +47,12 @@ const styles = theme => ({
     }
 });
 
+const ref = React.createRef();
+
 function Persona(props: Props) {
   const { classes  } = props;
   return (
-     <div className={classes.persona}>
+     <div ref={ref} className={classes.persona}>
         <PersonaContainer>
             { (persona, onUpdatePersona) => {
                 return <PersonaHeader 
@@ -60,7 +62,7 @@ function Persona(props: Props) {
             }}
         </PersonaContainer>
         <div className={classes.personaContent}>
-            <ColumnsContainer>
+            <ColumnsContainer personaRef={ref} >
                 { (columnsState, onUpdateFeld, onRemoveField) => {
                     return columnsState.items.map((column, index) => {
                         const colClass = index === 0 ? classes.firstColumn : classes.secondColumn;
