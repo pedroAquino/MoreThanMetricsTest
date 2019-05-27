@@ -2,7 +2,7 @@
 
 This is a test made for more than metrics frontend position.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+You can see the final result at [This Link][https://github.com/pedroAquino/MoreThanMetricsTest]
 
 ## Technology Stack
 - React is the main ui library,
