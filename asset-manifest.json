@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.0e28ef7f.chunk.css",
-    "main.js": "/static/js/main.86190a62.chunk.js",
-    "main.js.map": "/static/js/main.86190a62.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/js/2.0d212c7b.chunk.js": "/static/js/2.0d212c7b.chunk.js",
-    "static/js/2.0d212c7b.chunk.js.map": "/static/js/2.0d212c7b.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.554a9cab6bff823c78e3755386bb8974.js": "/precache-manifest.554a9cab6bff823c78e3755386bb8974.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.0e28ef7f.chunk.css.map": "/static/css/main.0e28ef7f.chunk.css.map",
-    "static/media/beach.jpeg": "/static/media/beach.be86e94d.jpeg",
-    "static/media/capivara.jpg": "/static/media/capivara.8af3182f.jpg",
-    "static/media/dog.jpg": "/static/media/dog.3bbab165.jpg",
-    "static/media/tess.jpg": "/static/media/tess.0ac01ffa.jpg"
+    "main.css": "/MoreThanMetricsTest/static/css/main.0e28ef7f.chunk.css",
+    "main.js": "/MoreThanMetricsTest/static/js/main.88fa7780.chunk.js",
+    "main.js.map": "/MoreThanMetricsTest/static/js/main.88fa7780.chunk.js.map",
+    "runtime~main.js": "/MoreThanMetricsTest/static/js/runtime~main.ee907b4b.js",
+    "runtime~main.js.map": "/MoreThanMetricsTest/static/js/runtime~main.ee907b4b.js.map",
+    "static/js/2.0d212c7b.chunk.js": "/MoreThanMetricsTest/static/js/2.0d212c7b.chunk.js",
+    "static/js/2.0d212c7b.chunk.js.map": "/MoreThanMetricsTest/static/js/2.0d212c7b.chunk.js.map",
+    "index.html": "/MoreThanMetricsTest/index.html",
+    "precache-manifest.870323eadfebe502f92ee915a6bfceef.js": "/MoreThanMetricsTest/precache-manifest.870323eadfebe502f92ee915a6bfceef.js",
+    "service-worker.js": "/MoreThanMetricsTest/service-worker.js",
+    "static/css/main.0e28ef7f.chunk.css.map": "/MoreThanMetricsTest/static/css/main.0e28ef7f.chunk.css.map",
+    "static/media/beach.jpeg": "/MoreThanMetricsTest/static/media/beach.be86e94d.jpeg",
+    "static/media/capivara.jpg": "/MoreThanMetricsTest/static/media/capivara.8af3182f.jpg",
+    "static/media/dog.jpg": "/MoreThanMetricsTest/static/media/dog.3bbab165.jpg",
+    "static/media/tess.jpg": "/MoreThanMetricsTest/static/media/tess.0ac01ffa.jpg"
   }
 }
