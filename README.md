@@ -2,7 +2,7 @@
 
 This is a test made for more than metrics frontend position.
 
-You can see the final result at [This Link](https://github.com/pedroAquino/MoreThanMetricsTest)
+You can see the final result at [This Link](https://pedroaquino.github.io/MoreThanMetricsTest/)
 
 ## Technology Stack
 - React is the main ui library,
