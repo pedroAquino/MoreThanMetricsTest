@@ -20,7 +20,8 @@ it('should create a field according to object', () => {
         nextId: 2,
         src: 'persona.png',
         imageSources: [],
-        formatedText: []
+        formatedText: [],
+        editable: false
     });
 });
 

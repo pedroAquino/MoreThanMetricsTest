@@ -146,7 +146,9 @@ describe('columns reducer',  () => {
                             nextId: null,
                             src: '',
                             imageSources: [],
-                            formatedText: []
+                            formatedText: [],
+                            editable: true,
+                            isNew: true
                         }
                     ]
                 },
@@ -164,7 +166,9 @@ describe('columns reducer',  () => {
                             nextId: null,
                             src: '',
                             imageSources: [],
-                            formatedText: []
+                            formatedText: [],
+                            editable: false,
+                            isNew: true
                         }
                     ]
                 }
@@ -192,7 +196,9 @@ describe('columns reducer',  () => {
             nextId: null,
             src: '',
             imageSources: [],
-            formatedText: []
+            formatedText: [],
+            editable: true,
+            isNew: true
         });
 
         const column2 = result.items.find(i => i.id === 2);
